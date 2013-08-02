@@ -12,9 +12,13 @@ on the contents and syntax of NTv2 files, and there are no easily available
 programs for creating and/or dumping them. This distribution is intended
 to address this need.
 
-This package contains the official Canadian NTv2 document, a C library, some
-sample programs to create, dump, and use NTv2 files, and some sample NTv2
-files to test with.
+This package contains a C library, some sample programs to create, dump,
+and use NTv2 files, and some sample NTv2 files to test with.
+
+For further information, see the Canadian document
+[NTv2 (National Transformation Version 2)](
+http://www.mgs.gov.on.ca/stdprodconsume/groups/content/@mgs/@iandit/documents/resourcelist/stel02_047447.pdf).
+The relevant section is "Appendix B: NTv2 Developers Guide".
 
 ### NTv2 file formats
 

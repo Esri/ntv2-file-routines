@@ -33,10 +33,6 @@ Contents of this package
                         to create the HTML documentation.
                         (See www.doxygen.org for details.)
 
-     STEL02_047447.pdf  The official Canadian Government documentation
-                        on the NTv2 transformation.  The relevant section is
-                        "Appendix B: NTv2 Developers Guide".
-
      html/
         *               The HTML documentation for the NTv2 library routines.
                         This is for developers who wish to incorporate

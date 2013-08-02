@@ -31,7 +31,6 @@ include $(TOP_DIR)/build/make_includes/make.i
 #
 OTHER  := \
   doxyfile.txt       \
-  STEL02_047447.pdf  \
   $(wildcard html/*) \
   $(NULL)
 
