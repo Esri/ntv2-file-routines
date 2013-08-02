@@ -18,7 +18,6 @@
 /* Routines to copy/dump/validate NTv2 files and transform points            */
 /* ------------------------------------------------------------------------- */
 
-/* deal with Microsoft BS */
 #ifdef _WIN32
 #  pragma warning (disable: 4996) /* same as "-D _CRT_SECURE_NO_WARNINGS" */
 #endif
