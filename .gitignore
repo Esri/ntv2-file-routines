@@ -1,0 +1,36 @@
+# ------------------------------------------------------------------------
+# list of directories/files for git to ignore
+# ------------------------------------------------------------------------
+
+# build directories
+
+debug32/
+debug64/
+release32/
+release64/
+
+# temp files
+*.list
+?
+foo*
+test*
+
+# Windoze compile/link files
+*.obj
+*.bsc
+*.idb
+*.ilk
+*.map
+*.pch
+*.pdb
+*.res
+*.sbr
+*.tlh
+*.lib
+*.dll
+
+# Unix compile/link files
+*.o
+*.a
+*.so
+*.dylib

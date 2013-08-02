@@ -1,0 +1,62 @@
+Contents of this package
+
+     CONTENTS           This file.
+     license.txt        The license for this package.
+     README.md          A readme file describing this package and its use.
+
+     makefile           A GNU makefile to build the NTv2 library and
+                        sample programs.
+
+     ntv2_2008.sln      A Microsoft Visual Studio 2008 solution file
+                        to build the NTv2 library and sample programs.
+
+     ntv2_2012.sln      A Microsoft Visual Studio 2012 solution file
+                        to build the NTv2 library and sample programs.
+
+   build/
+      makefile          A GNU makefile for this directory.
+
+      make_includes/
+         make*.i        GNU make include files.
+
+      vs_projects/
+         *.vcproj       Microsoft Visual Studio 2008 project files
+                        for the library and sample programs.
+
+         *.vcxproj*     Microsoft Visual Studio 2012 project files
+                        for the library and sample programs.
+
+   doc/
+     makefile           A GNU makefile for this directory.
+
+     doxyfile.txt       The configuration file used by the doxygen program
+                        to create the HTML documentation.
+                        (See www.doxygen.org for details.)
+
+     STEL02_047447.pdf  The official Canadian Government documentation
+                        on the NTv2 transformation.  The relevant section is
+                        "Appendix B: NTv2 Developers Guide".
+
+     html/
+        *               The HTML documentation for the NTv2 library routines.
+                        This is for developers who wish to incorporate
+                        the ntv2 routines into their own programs.
+                        The top-level URL is "html/index.html".
+
+   samples/
+     makefile           A GNU makefile for this directory.
+     mne.gsb            The Montenegro NTv2 file stored as a  binary file.
+     mne.gsa            The Montenegro NTv2 file stored as an ascii  file.
+
+   include/
+     makefile           A GNU makefile for this directory.
+     libntv2.h          The header file for the NTv2 routines.
+
+   src/
+     makefile           A GNU makefile for this directory.
+     libntv2.c          The source file for the NTv2 routines.
+
+   etc/
+     makefile           A GNU makefile for this directory.
+     ntv2_file.c        The source file for the "ntv2_file" program.
+     ntv2_cvt.c         The source file for the "ntv2_cvt"  program.
