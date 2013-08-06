@@ -52,7 +52,8 @@
 #define NTV2_SHOW_PATH()     if ( rc == NTV2_ERR_OK ) \
                                 fprintf(fp, "%s:\n", hdr->path)
 
-#define NTV2_OFFSET_OF(t,m)  ((int)( (size_t)&(((t *)0)->m) ))
+#define NTV2_OFFSET_OF(t,m)       ((int)( (size_t)&(((t *)0)->m) ))
+#define NTV2_UNUSED_PARAMETER(p)  (void)(p)
 
 /* ------------------------------------------------------------------------- */
 /* Floating-point comparison macros                                          */
@@ -4091,6 +4092,8 @@ static double ntv2_get_shift_from_data(
 {
    double shift;
    int   offs = (irow * rec->ncols) + icol;
+
+   NTV2_UNUSED_PARAMETER(hdr);
 
    shift = rec->shifts[offs][coord_type];
 

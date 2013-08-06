@@ -52,5 +52,5 @@ EXEPPDEFS  = $(ARCHITECTURE) -brtl -L$(LIB_DIR)
 LIBDEFS    = $(AR_OPTS) qc
 DLLDEFS    = $(ARCHITECTURE) -brtl -L$(LIB_DIR) -G
 
-OS_LIBS    =
-OS_LIBSPP  =
+OS_LIBS    = -lpthreads
+OS_LIBSPP  = -lpthreads

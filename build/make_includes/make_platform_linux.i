@@ -58,5 +58,5 @@ EXEPPDEFS = -pthread -L$(LIB_DIR) $(ARCHITECTURE)
 LIBDEFS   = qc
 DLLDEFS   = -shared -pthread -fPIC -L$(LIB_DIR) $(ARCHITECTURE)
 
-OS_LIBS   =
-OS_LIBSPP = -lstdc++
+OS_LIBS   = -lpthread
+OS_LIBSPP = -lpthread -lstdc++

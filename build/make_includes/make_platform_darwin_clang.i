@@ -56,5 +56,5 @@ EXEPPDEFS = $(ARCHITECTURE) -L$(LIB_DIR)
 LIBDEFS   = qc
 DLLDEFS   = $(ARCHITECTURE) -L$(LIB_DIR) -dynamiclib
 
-OS_LIBS   =
-OS_LIBSPP = -lstdc++
+OS_LIBS   = -lpthread
+OS_LIBSPP = -lpthread -lstdc++
