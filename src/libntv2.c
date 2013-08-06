@@ -2467,12 +2467,6 @@ static int ntv2_read_data_bin(
             NTV2_SWAPF(&gs.f_lat_shift, 1);
             NTV2_SWAPF(&gs.f_lon_shift, 1);
 
-            if ( hdr->data_converted )
-            {
-               gs.f_lat_shift = (float)( gs.f_lat_shift * hdr->dat_conv );
-               gs.f_lon_shift = (float)( gs.f_lon_shift * hdr->dat_conv );
-            }
-
             rec->shifts[j][NTV2_COORD_LAT] = gs.f_lat_shift;
             rec->shifts[j][NTV2_COORD_LON] = gs.f_lon_shift;
 
@@ -2505,7 +2499,6 @@ static NTV2_HDR * ntv2_load_file_bin(
    const char *  ntv2file,
    NTV2_BOOL     keep_orig,
    NTV2_BOOL     read_data,
-   NTV2_BOOL     convert_data,
    NTV2_EXTENT * extent,
    int *         prc)
 {
@@ -2519,7 +2512,6 @@ static NTV2_HDR * ntv2_load_file_bin(
    }
 
    hdr->keep_orig      = keep_orig;
-   hdr->data_converted = convert_data;
 
    if ( rc == NTV2_ERR_OK )
    {
@@ -2816,14 +2808,6 @@ static int ntv2_read_data_asc(
             rec->shifts[i][NTV2_COORD_LAT] = (float)ntv2_atod(TOK(0));
             rec->shifts[i][NTV2_COORD_LON] = (float)ntv2_atod(TOK(1));
 
-            if ( hdr->data_converted )
-            {
-               rec->shifts[i][NTV2_COORD_LAT] =
-                  (float)( rec->shifts[i][NTV2_COORD_LAT] * hdr->dat_conv );
-               rec->shifts[i][NTV2_COORD_LON] =
-                  (float)( rec->shifts[i][NTV2_COORD_LON] * hdr->dat_conv );
-            }
-
             if ( rec->accurs != NTV2_NULL )
             {
                /* Note that if there are only 2 tokens in the line,
@@ -2874,7 +2858,6 @@ static NTV2_HDR * ntv2_load_file_asc(
    const char *  ntv2file,
    NTV2_BOOL     keep_orig,
    NTV2_BOOL     read_data,
-   NTV2_BOOL     convert_data,
    NTV2_EXTENT * extent,
    int *         prc)
 {
@@ -2893,7 +2876,6 @@ static NTV2_HDR * ntv2_load_file_asc(
    }
 
    hdr->keep_orig      = keep_orig;
-   hdr->data_converted = convert_data;
 
    /* -------- read in the overview record */
 
@@ -2993,7 +2975,6 @@ NTV2_HDR * ntv2_load_file(
    const char *  ntv2file,
    NTV2_BOOL     keep_orig,
    NTV2_BOOL     read_data,
-   NTV2_BOOL     convert_data,
    NTV2_EXTENT * extent,
    int *         prc)
 {
@@ -3018,7 +2999,6 @@ NTV2_HDR * ntv2_load_file(
          hdr = ntv2_load_file_asc(ntv2file,
                                   keep_orig,
                                   read_data,
-                                  convert_data,
                                   extent,
                                   prc);
          break;
@@ -3027,7 +3007,6 @@ NTV2_HDR * ntv2_load_file(
          hdr = ntv2_load_file_bin(ntv2file,
                                   keep_orig,
                                   read_data,
-                                  convert_data,
                                   extent,
                                   prc);
          break;
@@ -3121,12 +3100,6 @@ static void ntv2_write_sf_bin(
 
       gs.f_lat_shift = rec->shifts[i][NTV2_COORD_LAT];
       gs.f_lon_shift = rec->shifts[i][NTV2_COORD_LON];
-
-      if ( hdr->data_converted )
-      {
-         gs.f_lat_shift = (float)( gs.f_lat_shift / hdr->dat_conv );
-         gs.f_lon_shift = (float)( gs.f_lon_shift / hdr->dat_conv );
-      }
 
       if ( rec->accurs != NTV2_NULL )
       {
@@ -3290,12 +3263,6 @@ static void ntv2_write_sf_asc(
 
       gs.f_lat_shift    = rec->shifts[i][NTV2_COORD_LAT];
       gs.f_lon_shift    = rec->shifts[i][NTV2_COORD_LON];
-
-      if ( hdr->data_converted )
-      {
-         gs.f_lat_shift = (float)( gs.f_lat_shift / hdr->dat_conv );
-         gs.f_lon_shift = (float)( gs.f_lon_shift / hdr->dat_conv );
-      }
 
       if ( rec->accurs != NTV2_NULL )
       {
@@ -4110,7 +4077,6 @@ static double ntv2_get_shift_from_file(
    else
    {
       NTV2_SWAPF(&shift, 1);
-      shift = (float)(shift * hdr->dat_conv);
    }
 
    return shift;
@@ -4127,8 +4093,6 @@ static double ntv2_get_shift_from_data(
    int   offs = (irow * rec->ncols) + icol;
 
    shift = rec->shifts[offs][coord_type];
-   if ( !hdr->data_converted )
-      shift = (float)(shift * hdr->dat_conv);
 
    return shift;
 }
@@ -4256,7 +4220,7 @@ static double ntv2_calculate_one_shift(
                     + (d * x_cellfrac * y_cellfrac);
 
    /* The shift at this point is in decimal seconds, so convert to degrees. */
-   return (shift / 3600.0);
+   return (shift * hdr->dat_conv) / 3600.0;
 }
 
 /*------------------------------------------------------------------------

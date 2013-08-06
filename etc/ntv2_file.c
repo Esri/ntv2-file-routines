@@ -221,7 +221,6 @@ static int process_file(const char *inpfile)
       inpfile,            /* in:  input file          */
       TRUE,               /* in:  keep original data  */
       read_data,          /* in:  read    shift data? */
-      dump_data,          /* in:  convert shift data? */
       extptr,             /* in:  extent pointer?     */
       &rc);               /* out: error code          */
 

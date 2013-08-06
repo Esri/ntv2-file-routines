@@ -358,7 +358,6 @@ int main(int argc, const char **argv)
       ntv2file,           /* in:  filename                 */
       FALSE,              /* in:  don't keep original hdrs */
       !read_on_fly,       /* in:  read    shift data?      */
-      TRUE,               /* in:  convert shift data       */
       extptr,             /* in:  extent pointer           */
       &rc);               /* out: result code              */
 

@@ -335,7 +335,6 @@ struct ntv2_hdr
    NTV2_BOOL      keep_orig;           /*!< TRUE if orig data is kept */
    NTV2_BOOL      pads_present;        /*!< TRUE if pads are in file  */
    NTV2_BOOL      swap_data;           /*!< TRUE if must swap data    */
-   NTV2_BOOL      data_converted;      /*!< TRUE if data is converted */
    int            fixed;               /*!< Mask of NTV2_FIX_* codes  */
 
    double         hdr_conv;            /*!< Header conversion factor  */
@@ -488,15 +487,6 @@ extern int ntv2_filetype(
  *                     A TRUE value will also result in closing the file
  *                     after reading, since there is no need to keep it open.
  *
- * @param convert_data TRUE to convert shift data to decimal seconds.
- *                     If you are only loading the file in order to copy
- *                     it to another file, it is best to not convert the
- *                     shift data, since converting and then unconverting
- *                     may result in a loss of precision. However, if
- *                     you are using the file to do data conversion, it
- *                     is better to do the conversion once than each time
- *                     it is used.
- *
  * @param extent       A pointer to an NTV2_EXTENT struct.
  *                     This pointer may be NULL.
  *                     This is ignored for text files.
@@ -514,7 +504,6 @@ extern NTV2_HDR * ntv2_load_file(
    const char *  ntv2file,
    NTV2_BOOL     keep_orig,
    NTV2_BOOL     read_data,
-   NTV2_BOOL     convert_data,
    NTV2_EXTENT * extent,
    int *         prc);
 
