@@ -75,8 +75,9 @@ HDRS  := \
   $(NULL)
 
 OTHER := \
-  libntv2.rc  \
   libntv2.def \
+  libntv2.i   \
+  libntv2.rc  \
   $(NULL)
 
 CHSRC   := $(C_SRC) $(HDRS)

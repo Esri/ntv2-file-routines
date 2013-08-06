@@ -30,6 +30,7 @@
 #include <locale.h>
 
 #include "libntv2.h"
+#include "libntv2.i"
 
 /* ------------------------------------------------------------------------- */
 /* internal defines and macros                                               */
@@ -53,20 +54,18 @@
 
 #define NTV2_OFFSET_OF(t,m)  ((int)( (size_t)&(((t *)0)->m) ))
 
-#define NTV2_UNUSED_PARAMETER(p)  (void)(p)
-
 /* ------------------------------------------------------------------------- */
-/* floating-point comparison macros                                          */
+/* Floating-point comparison macros                                          */
 /* ------------------------------------------------------------------------- */
 
-#define NTV2_EPS48           3.55271367880050092935562e-15 /* 2^(-48) */
-#define NTV2_EPS49           1.77635683940025046467781e-15 /* 2^(-49) */
-#define NTV2_EPS50           8.88178419700125232338905e-16 /* 2^(-50) */
-#define NTV2_EPS51           4.44089209850062616169453e-16 /* 2^(-51) */
-#define NTV2_EPS52           2.22044604925031308084726e-16 /* 2^(-52) */
-#define NTV2_EPS53           1.11022302462515654042363e-16 /* 2^(-53) */
+#define NTV2_EPS_48          3.55271367880050092935562e-15 /* 2^(-48) */
+#define NTV2_EPS_49          1.77635683940025046467781e-15 /* 2^(-49) */
+#define NTV2_EPS_50          8.88178419700125232338905e-16 /* 2^(-50) */
+#define NTV2_EPS_51          4.44089209850062616169453e-16 /* 2^(-51) */
+#define NTV2_EPS_52          2.22044604925031308084726e-16 /* 2^(-52) */
+#define NTV2_EPS_53          1.11022302462515654042363e-16 /* 2^(-53) */
 
-#define NTV2_EPS             NTV2_EPS50    /* best compromise between */
+#define NTV2_EPS             NTV2_EPS_50   /* best compromise between */
                                            /* speed and accuracy      */
 
 #define NTV2_ABS(a)          ( ((a) < 0) ? -(a) : (a) )
@@ -190,51 +189,13 @@ const char * ntv2_errmsg(int err_num, char msg_buf[])
 }
 
 /* ------------------------------------------------------------------------- */
-/* NTv2 mutex processing (not yet implemented)                               */
+/* String routines                                                           */
 /* ------------------------------------------------------------------------- */
 
-static void * ntv2_mutex_create()
-{
-   return NTV2_NULL;
-}
-
-static void ntv2_mutex_delete(void *mp)
-{
-   NTV2_UNUSED_PARAMETER(mp);
-}
-
-static void ntv2_mutex_enter (void *mp)
-{
-   NTV2_UNUSED_PARAMETER(mp);
-}
-
-static void ntv2_mutex_leave (void *mp)
-{
-   NTV2_UNUSED_PARAMETER(mp);
-}
-
-/* ------------------------------------------------------------------------- */
-/* string tokenizing                                                         */
-/* ------------------------------------------------------------------------- */
-
-#define NTV2_TOKENS_MAX     64
-#define NTV2_TOKENS_BUFLEN  256
-
-typedef struct ntv2_token NTV2_TOKEN;
-struct ntv2_token
-{
-   char   buf[NTV2_TOKENS_BUFLEN];
-   char * toks[NTV2_TOKENS_MAX];
-   int    num;
-};
-
-/*------------------------------------------------------------------------
- * strip a string of all leading/trailing whitespace
- */
 static char * ntv2_strip(char *str)
 {
    char * s;
-   char * e = NULL;
+   char * e = NTV2_NULL;
 
    for (; isspace(*str); str++) ;
 
@@ -244,7 +205,7 @@ static char * ntv2_strip(char *str)
          e = s;
    }
 
-   if ( e != NULL )
+   if ( e != NTV2_NULL )
       e[1] = 0;
    else
       *str = 0;
@@ -261,8 +222,54 @@ static char * ntv2_strip_buf(char *str)
    return str;
 }
 
-/*------------------------------------------------------------------------
- * tokenize a buffer
+static int ntv2_strcmp_i(const char *s1, const char *s2)
+{
+   for (;;)
+   {
+      int c1 = toupper(*(const unsigned char *)s1);
+      int c2 = toupper(*(const unsigned char *)s2);
+      int rc;
+
+      rc = (c1 - c2);
+      if ( rc != 0 || c1 == 0 || c2 == 0 )
+         return (rc);
+
+      s1++;
+      s2++;
+   }
+}
+
+/* Like strncpy(), but guarantees a null-terminated string
+ * and returns number of chars copied.
+ */
+static int ntv2_strncpy(char *buf, const char *str, int n)
+{
+   char * b = buf;
+   const char *s;
+
+   for (s = str; --n && *s; s++)
+      *b++ = *s;
+   *b = 0;
+
+   return (int)(b - buf);
+}
+
+/* ------------------------------------------------------------------------- */
+/* String tokenizing                                                         */
+/* ------------------------------------------------------------------------- */
+
+#define NTV2_TOKENS_MAX     64
+#define NTV2_TOKENS_BUFLEN  256
+
+typedef struct ntv2_token NTV2_TOKEN;
+struct ntv2_token
+{
+   char   buf  [NTV2_TOKENS_BUFLEN];
+   char * toks [NTV2_TOKENS_MAX];
+   int    num;
+};
+
+/* tokenize a buffer
  *
  * This routine splits a line into "tokens", based on the delimiter
  * string.  Each token will have all leading/trailing whitespace
@@ -273,7 +280,8 @@ static char * ntv2_strip_buf(char *str)
  * count as a single delimiter.
  *
  * Up to "maxtoks" tokens will be processed.  Any left-over chars will
- * be left in the last token.
+ * be left in the last token. If there are less tokens than requested,
+ * then the remaining token entries will point to an empty string.
  *
  * Return value is the number of tokens found.
  *
@@ -302,9 +310,7 @@ static int ntv2_str_tokenize(
 
    /* copy the line, removing any leading/trailing whitespace */
 
-   strncpy(ptoks->buf, line, sizeof(ptoks->buf));
-   ptoks->buf[sizeof(ptoks->buf)-1] = 0;
-
+   ntv2_strncpy(ptoks->buf, line, sizeof(ptoks->buf));
    ntv2_strip_buf(ptoks->buf);
    ptoks->num = 0;
 
@@ -366,46 +372,24 @@ static int ntv2_str_tokenize(
 
       if ( (c == '\'' || c == '"') && str[len-1] == c )
       {
-         strncpy(str, str+1, len-2);
-         str[len-2] = 0;
+         str[len-1] = 0;
+         ptoks->toks[i] = ++str;
          ntv2_strip_buf(str);
       }
    }
 
    /* set rest of requested tokens to empty string */
    for (i = ntoks; i < maxtoks; i++)
-      ptoks->toks[i] = &ptoks->buf[sizeof(ptoks->buf)-1];
+      ptoks->toks[i] = "";
 
    ptoks->num = ntoks;
    return ntoks;
 }
 
 /* ------------------------------------------------------------------------- */
-/* generic utility routines                                                  */
+/* Byte swapping routines                                                    */
 /* ------------------------------------------------------------------------- */
 
-/*------------------------------------------------------------------------
- * memory routines
- *
- * These routines are abstracted here in order to provide an implementer
- * the ability to plug in their own memory routines.
- */
-static void * ntv2_memalloc(size_t n)
-{
-   return malloc(n);
-}
-
-static void ntv2_memdealloc(void *p)
-{
-   if ( p != NTV2_NULL )
-   {
-      free(p);
-   }
-}
-
-/*------------------------------------------------------------------------
- * check if big/little endian
- */
 static NTV2_BOOL ntv2_is_big_endian(void)
 {
    int one = 1;
@@ -418,10 +402,7 @@ static NTV2_BOOL ntv2_is_ltl_endian(void)
    return ! ntv2_is_big_endian();
 }
 
-/*------------------------------------------------------------------------
- * Byte swapping routines
- */
-#define NTV2_SWAP4(a) \
+#define SWAP4(a) \
    ( (((a) & 0x000000ff) << 24) | \
      (((a) & 0x0000ff00) <<  8) | \
      (((a) & 0x00ff0000) >>  8) | \
@@ -432,7 +413,7 @@ static void ntv2_swap_int(int in[], int ntimes)
    int i;
 
    for (i = 0; i < ntimes; i++)
-      in[i] = NTV2_SWAP4((unsigned int)in[i]);
+      in[i] = SWAP4((unsigned int)in[i]);
 }
 
 static void ntv2_swap_flt(float in[], int ntimes)
@@ -456,27 +437,9 @@ static void ntv2_swap_dbl(double in[], int ntimes)
    }
 }
 
-/*------------------------------------------------------------------------
- * case-insensitive string compare
- */
-static int ntv2_strcmp_i(
-   const char *s1,
-   const char *s2)
-{
-   for (;;)
-   {
-      int c1 = toupper(*(const unsigned char *)s1);
-      int c2 = toupper(*(const unsigned char *)s2);
-      int rc;
-
-      rc = (c1 - c2);
-      if ( rc != 0 || c1 == 0 || c2 == 0 )
-         return (rc);
-
-      s1++;
-      s2++;
-   }
-}
+/* ------------------------------------------------------------------------- */
+/* generic utility routines                                                  */
+/* ------------------------------------------------------------------------- */
 
 /*------------------------------------------------------------------------
  * copy a string and pad with blanks
