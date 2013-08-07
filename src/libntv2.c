@@ -3634,8 +3634,9 @@ static void ntv2_dump_data(
 
    if ( rec->shifts != NTV2_NULL )
    {
-      const NTV2_SHIFT * shifts   = rec->shifts;
-      const NTV2_SHIFT * accurs   = rec->accurs;
+      /* GCC needs these casts for some reason... */
+      const NTV2_SHIFT * shifts   = (const NTV2_SHIFT *)(rec->shifts);
+      const NTV2_SHIFT * accurs   = (const NTV2_SHIFT *)(rec->accurs);
       NTV2_BOOL    dump_acc = FALSE;
       int row, col;
 
