@@ -3405,11 +3405,11 @@ int ntv2_write_file(
  * Dump the file overview struct to a stream.
  */
 static void ntv2_dump_ov(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode)
 {
-   NTV2_FILE_OV * ov = hdr->overview;
+   const NTV2_FILE_OV * ov = hdr->overview;
    char   stemp1[NTV2_NAME_LEN+1];
    char   stemp2[NTV2_NAME_LEN+1];
    char   ntemp1[32];
@@ -3445,12 +3445,12 @@ static void ntv2_dump_ov(
  * Dump a file sub-file struct to a stream.
  */
 static void ntv2_dump_sf(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       n,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             n,
+   int             mode)
 {
-   NTV2_FILE_SF * sf;
+   const NTV2_FILE_SF * sf;
    char   stemp1[NTV2_NAME_LEN+1];
    char   stemp2[NTV2_NAME_LEN+1];
    char   ntemp1[32];
@@ -3520,9 +3520,9 @@ static void ntv2_dump_sf(
  * Dump the internal overview header struct to a stream.
  */
 static void ntv2_dump_hdr(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode)
 {
    char ntemp1[32];
 
@@ -3563,12 +3563,12 @@ static void ntv2_dump_hdr(
  * Dump an internal sub-file record struct to a stream.
  */
 static void ntv2_dump_rec(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       n,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             n,
+   int             mode)
 {
-   NTV2_REC * rec = hdr->recs+n;
+   const NTV2_REC * rec = hdr->recs+n;
    char ntemp1[32];
 
    if ( (mode & NTV2_DUMP_HDRS_INT)     == 0 )
@@ -3596,7 +3596,7 @@ static void ntv2_dump_rec(
 
    if ( rec->sub != NTV2_NULL )
    {
-     NTV2_REC * sub = rec->sub;
+     const NTV2_REC * sub = rec->sub;
      const char * t = "sub files";
 
      while ( sub != NTV2_NULL )
@@ -3625,17 +3625,17 @@ static void ntv2_dump_rec(
  * Dump the data for a subfile.
  */
 static void ntv2_dump_data(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       n,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             n,
+   int             mode)
 {
-   NTV2_REC * rec = hdr->recs+n;
+   const NTV2_REC * rec = hdr->recs+n;
 
    if ( rec->shifts != NTV2_NULL )
    {
-      NTV2_SHIFT * shifts   = rec->shifts;
-      NTV2_SHIFT * accurs   = rec->accurs;
+      const NTV2_SHIFT * shifts   = rec->shifts;
+      const NTV2_SHIFT * accurs   = rec->accurs;
       NTV2_BOOL    dump_acc = FALSE;
       int row, col;
 
@@ -3696,9 +3696,9 @@ static void ntv2_dump_data(
  * Dump the contents of all headers in an NTv2 file.
  */
 void ntv2_dump(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode)
 {
    if ( hdr != NTV2_NULL && fp != NTV2_NULL )
    {
@@ -3722,10 +3722,10 @@ void ntv2_dump(
  * List the contents of all headers in an NTv2 file.
  */
 void ntv2_list(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode,
-   NTV2_BOOL do_hdr_line)
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode,
+   NTV2_BOOL       do_hdr_line)
 {
    if ( hdr != NTV2_NULL && fp != NTV2_NULL )
    {
@@ -3757,7 +3757,7 @@ void ntv2_list(
 
       for (i = 0; i < hdr->num_recs; i++)
       {
-         NTV2_REC * rec = &hdr->recs[i];
+         const NTV2_REC * rec = &hdr->recs[i];
 
          if ( rec->active )
          {
@@ -3847,14 +3847,14 @@ void ntv2_list(
  * magically appear inside another grid and vice-versa.  So we have a lot
  * of esoteric code to deal with those cases.
  */
-NTV2_REC * ntv2_find_rec(
-   NTV2_HDR * hdr,
-   double     lon,
-   double     lat,
-   int      * pstatus)
+const NTV2_REC * ntv2_find_rec(
+   const NTV2_HDR * hdr,
+   double           lon,
+   double           lat,
+   int            * pstatus)
 {
-   NTV2_REC * ps;
-   NTV2_REC * psc      = NTV2_NULL;
+   const NTV2_REC * ps;
+   const NTV2_REC * psc      = NTV2_NULL;
    NTV2_BOOL  next_gen = TRUE;
    int n_stat_5_pinged = 0;
    int status_ps       = (NTV2_STATUS_OUTSIDE_CELL + 1);
@@ -4047,11 +4047,11 @@ NTV2_REC * ntv2_find_rec(
  * so we have to check for that.
  */
 static double ntv2_get_shift_from_file(
-   NTV2_HDR * hdr,
-   NTV2_REC * rec,
-   int        icol,
-   int        irow,
-   int        coord_type)
+   const NTV2_HDR * hdr,
+   const NTV2_REC * rec,
+   int              icol,
+   int              irow,
+   int              coord_type)
 {
    float shift = 0.0;
    int   offs  = rec->offset +
@@ -4084,11 +4084,11 @@ static double ntv2_get_shift_from_file(
 }
 
 static double ntv2_get_shift_from_data(
-   NTV2_HDR * hdr,
-   NTV2_REC * rec,
-   int        icol,
-   int        irow,
-   int        coord_type)
+   const NTV2_HDR * hdr,
+   const NTV2_REC * rec,
+   int              icol,
+   int              irow,
+   int              coord_type)
 {
    double shift;
    int   offs = (irow * rec->ncols) + icol;
@@ -4101,11 +4101,11 @@ static double ntv2_get_shift_from_data(
 }
 
 static double ntv2_get_shift(
-   NTV2_HDR * hdr,
-   NTV2_REC * rec,
-   int        icol,
-   int        irow,
-   int        coord_type)
+   const NTV2_HDR * hdr,
+   const NTV2_REC * rec,
+   int              icol,
+   int              irow,
+   int              coord_type)
 {
    if ( rec->shifts == NTV2_NULL )
       return ntv2_get_shift_from_file(hdr, rec, irow, icol, coord_type);
@@ -4120,16 +4120,16 @@ static double ntv2_get_shift(
  * zero-shift values along each edge of the top-level-grid.
  */
 static double ntv2_calculate_one_shift(
-   NTV2_HDR * hdr,
-   NTV2_REC * rec,
-   int        status,
-   int        icol,
-   int        irow,
-   int        move_shifts_horz,
-   int        move_shifts_vert,
-   double     x_cellfrac,
-   double     y_cellfrac,
-   int        coord_type)
+   const NTV2_HDR * hdr,
+   const NTV2_REC * rec,
+   int              status,
+   int              icol,
+   int              irow,
+   int              move_shifts_horz,
+   int              move_shifts_vert,
+   double           x_cellfrac,
+   double           y_cellfrac,
+   int              coord_type)
 {
    double ll_shift = 0, lr_shift = 0, ul_shift = 0, ur_shift = 0;
    double b, c, d;
@@ -4233,13 +4233,13 @@ static double ntv2_calculate_one_shift(
  * zero-shift values along each edge of the top-level-grid.
  */
 static void ntv2_calculate_shifts(
-   NTV2_HDR * hdr,
-   NTV2_REC * rec,
-   double     lon,
-   double     lat,
-   int        status,
-   double *   plon_shift,
-   double *   plat_shift)
+   const NTV2_HDR * hdr,
+   const NTV2_REC * rec,
+   double           lon,
+   double           lat,
+   int              status,
+   double *         plon_shift,
+   double *         plat_shift)
 {
    double xgrid_index, ygrid_index, x_cellfrac, y_cellfrac;
    int    horz = 0, vert = 0;
@@ -4298,10 +4298,10 @@ static void ntv2_calculate_shifts(
  * is no indication of which points were changed and which were not.
  */
 int ntv2_forward(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
-   NTV2_COORD coord[])
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
+   NTV2_COORD      coord[])
 {
    int num = 0;
    int i;
@@ -4314,7 +4314,7 @@ int ntv2_forward(
 
    for (i = 0; i < n; i++)
    {
-      NTV2_REC * rec;
+      const NTV2_REC * rec;
       double lon, lat;
       int status;
 
@@ -4351,10 +4351,10 @@ int ntv2_forward(
 #endif
 
 int ntv2_inverse(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
-   NTV2_COORD coord[])
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
+   NTV2_COORD      coord[])
 {
    int max_iterations = MAX_ITERATIONS;
    int num = 0;
@@ -4390,7 +4390,7 @@ int ntv2_inverse(
            num_iterations < max_iterations;
            num_iterations++)
       {
-         NTV2_REC * rec;
+         const NTV2_REC * rec;
          double lon_shift, lat_shift;
          double lon_delta, lat_delta;
          double lon_est,   lat_est;
@@ -4457,11 +4457,11 @@ int ntv2_inverse(
  * Perform a transformation (forward or inverse) on an array of points.
  */
 int ntv2_transform(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
-   NTV2_COORD coord[],
-   int        direction)
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
+   NTV2_COORD      coord[],
+   int             direction)
 {
    if ( direction == NTV2_CVT_INVERSE )
       return ntv2_inverse(hdr, deg_factor, n, coord);

@@ -251,26 +251,26 @@ Functions</h2></td></tr>
 <tr class="separator:a476058083ab47808ba6823fceeaf13da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a500ae54f9d10eb244d3100110ae63e6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a500ae54f9d10eb244d3100110ae63e6f">ntv2_filetype</a> (const char *ntv2file)</td></tr>
 <tr class="separator:a500ae54f9d10eb244d3100110ae63e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48c90b4f2fad52683aba86e4227c01e4"><td class="memItemLeft" align="right" valign="top">NTV2_HDR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a48c90b4f2fad52683aba86e4227c01e4">ntv2_load_file</a> (const char *ntv2file, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> keep_orig, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> read_data, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> convert_data, NTV2_EXTENT *extent, int *prc)</td></tr>
-<tr class="separator:a48c90b4f2fad52683aba86e4227c01e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac99444b7787a5272348158399d35b1"><td class="memItemLeft" align="right" valign="top">NTV2_HDR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#acac99444b7787a5272348158399d35b1">ntv2_load_file</a> (const char *ntv2file, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> keep_orig, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> read_data, NTV2_EXTENT *extent, int *prc)</td></tr>
+<tr class="separator:acac99444b7787a5272348158399d35b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4929a7b55225938f1bf3bb883b5ddd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#ac4929a7b55225938f1bf3bb883b5ddd4">ntv2_delete</a> (NTV2_HDR *hdr)</td></tr>
 <tr class="separator:ac4929a7b55225938f1bf3bb883b5ddd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a344ce1cd351255be32462ada48172d44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a344ce1cd351255be32462ada48172d44">ntv2_write_file</a> (NTV2_HDR *hdr, const char *path, int byte_order)</td></tr>
 <tr class="separator:a344ce1cd351255be32462ada48172d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae470a547597f6950e650aaa7f2d0d133"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#ae470a547597f6950e650aaa7f2d0d133">ntv2_validate</a> (NTV2_HDR *hdr, FILE *fp)</td></tr>
 <tr class="separator:ae470a547597f6950e650aaa7f2d0d133"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedee51711eed15f4453f363f401223ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#aedee51711eed15f4453f363f401223ea">ntv2_dump</a> (NTV2_HDR *hdr, FILE *fp, int mode)</td></tr>
-<tr class="separator:aedee51711eed15f4453f363f401223ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4880f70dd884e532c2411e75f774f7dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a4880f70dd884e532c2411e75f774f7dc">ntv2_list</a> (NTV2_HDR *hdr, FILE *fp, int mode, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> do_hdr_line)</td></tr>
-<tr class="separator:a4880f70dd884e532c2411e75f774f7dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a384b1c223bea2b55b196d459c62490b0"><td class="memItemLeft" align="right" valign="top">NTV2_REC *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a384b1c223bea2b55b196d459c62490b0">ntv2_find_rec</a> (NTV2_HDR *hdr, double lon, double lat, int *pstatus)</td></tr>
-<tr class="separator:a384b1c223bea2b55b196d459c62490b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af871e2c9ccadce364d56908562ae5470"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#af871e2c9ccadce364d56908562ae5470">ntv2_forward</a> (NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[])</td></tr>
-<tr class="separator:af871e2c9ccadce364d56908562ae5470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1729b22ac690f97777a70b07823fd8b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a1729b22ac690f97777a70b07823fd8b4">ntv2_inverse</a> (NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[])</td></tr>
-<tr class="separator:a1729b22ac690f97777a70b07823fd8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9de9f8d5ca238ecf9d61f0ee6fb57438"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a9de9f8d5ca238ecf9d61f0ee6fb57438">ntv2_transform</a> (NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[], int direction)</td></tr>
-<tr class="separator:a9de9f8d5ca238ecf9d61f0ee6fb57438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a297225f04d7b0d2c419345ad6c74ec05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a297225f04d7b0d2c419345ad6c74ec05">ntv2_dump</a> (const NTV2_HDR *hdr, FILE *fp, int mode)</td></tr>
+<tr class="separator:a297225f04d7b0d2c419345ad6c74ec05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac591c26a640a695db355ac819f3751de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#ac591c26a640a695db355ac819f3751de">ntv2_list</a> (const NTV2_HDR *hdr, FILE *fp, int mode, <a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> do_hdr_line)</td></tr>
+<tr class="separator:ac591c26a640a695db355ac819f3751de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53fa2ef2090b168ed20148a32a6aaedd"><td class="memItemLeft" align="right" valign="top">const NTV2_REC *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a53fa2ef2090b168ed20148a32a6aaedd">ntv2_find_rec</a> (const NTV2_HDR *hdr, double lon, double lat, int *pstatus)</td></tr>
+<tr class="separator:a53fa2ef2090b168ed20148a32a6aaedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82816ba328a56ee4dd4cee595b9ccb04"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a82816ba328a56ee4dd4cee595b9ccb04">ntv2_forward</a> (const NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[])</td></tr>
+<tr class="separator:a82816ba328a56ee4dd4cee595b9ccb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33688ca8984125ebd57f2e86d57e0946"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a33688ca8984125ebd57f2e86d57e0946">ntv2_inverse</a> (const NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[])</td></tr>
+<tr class="separator:a33688ca8984125ebd57f2e86d57e0946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64c40958c9849a95b0e15239591e1115"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libntv2_8h.html#a64c40958c9849a95b0e15239591e1115">ntv2_transform</a> (const NTV2_HDR *hdr, double deg_factor, int n, <a class="el" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[], int direction)</td></tr>
+<tr class="separator:a64c40958c9849a95b0e15239591e1115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="ae6f52958cc8e1d6322ea00bd59137225"></a>
@@ -1332,14 +1332,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aedee51711eed15f4453f363f401223ea"></a>
+<a class="anchor" id="a297225f04d7b0d2c419345ad6c74ec05"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ntv2_dump </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1442,14 +1442,14 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
 
 </div>
 </div>
-<a class="anchor" id="a384b1c223bea2b55b196d459c62490b0"></a>
+<a class="anchor" id="a53fa2ef2090b168ed20148a32a6aaedd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NTV2_REC* ntv2_find_rec </td>
+          <td class="memname">const NTV2_REC* ntv2_find_rec </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1492,14 +1492,14 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
 
 </div>
 </div>
-<a class="anchor" id="af871e2c9ccadce364d56908562ae5470"></a>
+<a class="anchor" id="a82816ba328a56ee4dd4cee595b9ccb04"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int ntv2_forward </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1538,18 +1538,18 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of points successfully transformed.</dd></dl>
-<p>Note that this routine just calls <a class="el" href="libntv2_8h.html#a9de9f8d5ca238ecf9d61f0ee6fb57438">ntv2_transform()</a> with a direction value of NTV2_CVT_FORWARD. </p>
+<p>Note that this routine just calls <a class="el" href="libntv2_8h.html#a64c40958c9849a95b0e15239591e1115">ntv2_transform()</a> with a direction value of NTV2_CVT_FORWARD. </p>
 
 </div>
 </div>
-<a class="anchor" id="a1729b22ac690f97777a70b07823fd8b4"></a>
+<a class="anchor" id="a33688ca8984125ebd57f2e86d57e0946"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int ntv2_inverse </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1588,18 +1588,18 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of points successfully transformed.</dd></dl>
-<p>Note that this routine just calls <a class="el" href="libntv2_8h.html#a9de9f8d5ca238ecf9d61f0ee6fb57438">ntv2_transform()</a> with a direction value of NTV2_CVT_INVERSE. </p>
+<p>Note that this routine just calls <a class="el" href="libntv2_8h.html#a64c40958c9849a95b0e15239591e1115">ntv2_transform()</a> with a direction value of NTV2_CVT_INVERSE. </p>
 
 </div>
 </div>
-<a class="anchor" id="a4880f70dd884e532c2411e75f774f7dc"></a>
+<a class="anchor" id="ac591c26a640a695db355ac819f3751de"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ntv2_list </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1641,7 +1641,7 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
 
 </div>
 </div>
-<a class="anchor" id="a48c90b4f2fad52683aba86e4227c01e4"></a>
+<a class="anchor" id="acac99444b7787a5272348158399d35b1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1662,12 +1662,6 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
           <td></td>
           <td class="paramtype"><a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>&#160;</td>
           <td class="paramname"><em>read_data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>&#160;</td>
-          <td class="paramname"><em>convert_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1694,7 +1688,6 @@ NTV2_FILE_TYPE_ASC file type is ascii </li>
     <tr><td class="paramname">ntv2file</td><td>The name of the NTv2 file to load.</td></tr>
     <tr><td class="paramname">keep_orig</td><td>TRUE to keep copies of all external records. A TRUE value will also cause accuracy values to be read in when reading shift values.</td></tr>
     <tr><td class="paramname">read_data</td><td>TRUE to read in shift (and optionally accuracy) data. A TRUE value will also result in closing the file after reading, since there is no need to keep it open.</td></tr>
-    <tr><td class="paramname">convert_data</td><td>TRUE to convert shift data to decimal seconds. If you are only loading the file in order to copy it to another file, it is best to not convert the shift data, since converting and then unconverting may result in a loss of precision. However, if you are using the file to do data conversion, it is better to do the conversion once than each time it is used.</td></tr>
     <tr><td class="paramname">extent</td><td>A pointer to an NTV2_EXTENT struct. This pointer may be NULL. This is ignored for text files.</td></tr>
     <tr><td class="paramname">prc</td><td>A pointer to a result code. This pointer may be NULL. <ul>
 <li>
@@ -1710,14 +1703,14 @@ If unsuccessful, it will be set to NTV2_ERR_*. </li>
 
 </div>
 </div>
-<a class="anchor" id="a9de9f8d5ca238ecf9d61f0ee6fb57438"></a>
+<a class="anchor" id="a64c40958c9849a95b0e15239591e1115"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int ntv2_transform </td>
           <td>(</td>
-          <td class="paramtype">NTV2_HDR *&#160;</td>
+          <td class="paramtype">const NTV2_HDR *&#160;</td>
           <td class="paramname"><em>hdr</em>, </td>
         </tr>
         <tr>
@@ -1871,7 +1864,7 @@ Parents are written in the order they appeared in the original file. </li>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 15:36:17 for NTv2 File Processing Routines by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 7 2013 13:28:26 for NTv2 File Processing Routines by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

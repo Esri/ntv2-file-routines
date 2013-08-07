@@ -267,215 +267,212 @@
 <div class="line"><a name="l00335"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a1ab18938f2537509e9bf7b3e955c143c">  335</a></span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>      <a class="code" href="structntv2__hdr.html#a1ab18938f2537509e9bf7b3e955c143c">keep_orig</a>;           </div>
 <div class="line"><a name="l00336"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#ac073bfb566396bdbc371b54787ee743a">  336</a></span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>      <a class="code" href="structntv2__hdr.html#ac073bfb566396bdbc371b54787ee743a">pads_present</a>;        </div>
 <div class="line"><a name="l00337"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a78a1e84142fddb860393c0b916eba0b8">  337</a></span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>      <a class="code" href="structntv2__hdr.html#a78a1e84142fddb860393c0b916eba0b8">swap_data</a>;           </div>
-<div class="line"><a name="l00338"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a6f36cdf11e0ace9d8f5b9bbed53aa3f3">  338</a></span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>      <a class="code" href="structntv2__hdr.html#a6f36cdf11e0ace9d8f5b9bbed53aa3f3">data_converted</a>;      </div>
-<div class="line"><a name="l00339"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#ac13329f7c044d681e60ae9859ce1af36">  339</a></span>&#160;   <span class="keywordtype">int</span>            <a class="code" href="structntv2__hdr.html#ac13329f7c044d681e60ae9859ce1af36">fixed</a>;               </div>
-<div class="line"><a name="l00341"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a9bb5b41482f22d145ec983f24f825afe">  341</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a9bb5b41482f22d145ec983f24f825afe">hdr_conv</a>;            </div>
-<div class="line"><a name="l00342"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a33e6b1b2a763a9e3f43c5d4108ce1d67">  342</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a33e6b1b2a763a9e3f43c5d4108ce1d67">dat_conv</a>;            </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;   <span class="keywordtype">char</span>           <a class="code" href="structntv2__hdr.html#a581c50c72d4eb168a9c82392ad377d5c">gs_type</a> [<a class="code" href="libntv2_8h.html#a2cbf1baafedc0f272ebab0f953db5416">NTV2_NAME_LEN</a>+4];</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;   <span class="comment">/* These are the mins and maxes across all sub-files */</span></div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
-<div class="line"><a name="l00349"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#aa662bf44c64ae3ee92e46250e8f67d8d">  349</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#aa662bf44c64ae3ee92e46250e8f67d8d">lat_min</a>;             </div>
-<div class="line"><a name="l00350"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a681921796226eece84212c1e4e79797a">  350</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a681921796226eece84212c1e4e79797a">lat_max</a>;             </div>
-<div class="line"><a name="l00351"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a6623aa1b74649ef5bd22d890db227f5e">  351</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a6623aa1b74649ef5bd22d890db227f5e">lon_min</a>;             </div>
-<div class="line"><a name="l00352"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#ad15865c9fa07ff3a0bd4d6ea0668a774">  352</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#ad15865c9fa07ff3a0bd4d6ea0668a774">lon_max</a>;             </div>
-<div class="line"><a name="l00354"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a9cf2a8bc778e96aef1e2ac2ce61d017a">  354</a></span>&#160;   NTV2_REC *     <a class="code" href="structntv2__hdr.html#a9cf2a8bc778e96aef1e2ac2ce61d017a">recs</a>;                </div>
-<div class="line"><a name="l00355"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a4f709cc0c39fdd25d070ad2a11e1828a">  355</a></span>&#160;   NTV2_REC *     <a class="code" href="structntv2__hdr.html#a4f709cc0c39fdd25d070ad2a11e1828a">first_parent</a>;        </div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;   <span class="comment">/* This will be null if data is in memory. */</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
-<div class="line"><a name="l00359"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a68dcb215af394ee9a5b451367306acd8">  359</a></span>&#160;   FILE *         <a class="code" href="structntv2__hdr.html#a68dcb215af394ee9a5b451367306acd8">fp</a>;                  </div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;   <span class="comment">/* This should be used if mutex control is needed   */</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;   <span class="comment">/* for multi-threaded access to the file when       */</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;   <span class="comment">/* transforming points and reading data on-the-fly. */</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;   <span class="comment">/* This mutex does not need to be recursive.        */</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;   <span class="comment">/* This is currently not implemented.               */</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
-<div class="line"><a name="l00367"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a95a73dbddd2ad0550f0597c9bb952cc8">  367</a></span>&#160;   <span class="keywordtype">void</span> *         <a class="code" href="structntv2__hdr.html#a95a73dbddd2ad0550f0597c9bb952cc8">mutex</a>;               </div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;   <span class="comment">/* These may be null if not wanted. */</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
-<div class="line"><a name="l00371"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a073bf52894aa684769ae76d2ba724ae5">  371</a></span>&#160;   NTV2_FILE_OV * <a class="code" href="structntv2__hdr.html#a073bf52894aa684769ae76d2ba724ae5">overview</a>;            </div>
-<div class="line"><a name="l00372"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#af6cb26557238ee9f4768a61ef0605075">  372</a></span>&#160;   NTV2_FILE_SF * <a class="code" href="structntv2__hdr.html#af6cb26557238ee9f4768a61ef0605075">subfiles</a>;            </div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;};</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
+<div class="line"><a name="l00338"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#ac13329f7c044d681e60ae9859ce1af36">  338</a></span>&#160;   <span class="keywordtype">int</span>            <a class="code" href="structntv2__hdr.html#ac13329f7c044d681e60ae9859ce1af36">fixed</a>;               </div>
+<div class="line"><a name="l00340"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a9bb5b41482f22d145ec983f24f825afe">  340</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a9bb5b41482f22d145ec983f24f825afe">hdr_conv</a>;            </div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a33e6b1b2a763a9e3f43c5d4108ce1d67">  341</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a33e6b1b2a763a9e3f43c5d4108ce1d67">dat_conv</a>;            </div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;   <span class="keywordtype">char</span>           <a class="code" href="structntv2__hdr.html#a581c50c72d4eb168a9c82392ad377d5c">gs_type</a> [<a class="code" href="libntv2_8h.html#a2cbf1baafedc0f272ebab0f953db5416">NTV2_NAME_LEN</a>+4];</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;   <span class="comment">/* These are the mins and maxes across all sub-files */</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
+<div class="line"><a name="l00348"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#aa662bf44c64ae3ee92e46250e8f67d8d">  348</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#aa662bf44c64ae3ee92e46250e8f67d8d">lat_min</a>;             </div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a681921796226eece84212c1e4e79797a">  349</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a681921796226eece84212c1e4e79797a">lat_max</a>;             </div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a6623aa1b74649ef5bd22d890db227f5e">  350</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#a6623aa1b74649ef5bd22d890db227f5e">lon_min</a>;             </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#ad15865c9fa07ff3a0bd4d6ea0668a774">  351</a></span>&#160;   <span class="keywordtype">double</span>         <a class="code" href="structntv2__hdr.html#ad15865c9fa07ff3a0bd4d6ea0668a774">lon_max</a>;             </div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a9cf2a8bc778e96aef1e2ac2ce61d017a">  353</a></span>&#160;   NTV2_REC *     <a class="code" href="structntv2__hdr.html#a9cf2a8bc778e96aef1e2ac2ce61d017a">recs</a>;                </div>
+<div class="line"><a name="l00354"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a4f709cc0c39fdd25d070ad2a11e1828a">  354</a></span>&#160;   NTV2_REC *     <a class="code" href="structntv2__hdr.html#a4f709cc0c39fdd25d070ad2a11e1828a">first_parent</a>;        </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;   <span class="comment">/* This will be null if data is in memory. */</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a68dcb215af394ee9a5b451367306acd8">  358</a></span>&#160;   FILE *         <a class="code" href="structntv2__hdr.html#a68dcb215af394ee9a5b451367306acd8">fp</a>;                  </div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;   <span class="comment">/* This should be used if mutex control is needed   */</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;   <span class="comment">/* for multi-threaded access to the file when       */</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;   <span class="comment">/* transforming points and reading data on-the-fly. */</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;   <span class="comment">/* This mutex does not need to be recursive.        */</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a95a73dbddd2ad0550f0597c9bb952cc8">  365</a></span>&#160;   <span class="keywordtype">void</span> *         <a class="code" href="structntv2__hdr.html#a95a73dbddd2ad0550f0597c9bb952cc8">mutex</a>;               </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;   <span class="comment">/* These may be null if not wanted. */</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#a073bf52894aa684769ae76d2ba724ae5">  369</a></span>&#160;   NTV2_FILE_OV * <a class="code" href="structntv2__hdr.html#a073bf52894aa684769ae76d2ba724ae5">overview</a>;            </div>
+<div class="line"><a name="l00370"></a><span class="lineno"><a class="code" href="structntv2__hdr.html#af6cb26557238ee9f4768a61ef0605075">  370</a></span>&#160;   NTV2_FILE_SF * <a class="code" href="structntv2__hdr.html#af6cb26557238ee9f4768a61ef0605075">subfiles</a>;            </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;};</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;<span class="comment">/* NTv2 error codes                                                       */</span></div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="comment">/* NTv2 error codes                                                       */</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
-<div class="line"><a name="l00379"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac60af9d0cfd0ca60b048b6e18924f9a7">  379</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_OK                         0</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">/* generic errors */</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ace2ff3dd9579849bac5c8d134a60fbf8">  382</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_NO_MEMORY                  1</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno"><a class="code" href="libntv2_8h.html#acd0a6df7533aaeae68776260b6b7c614">  383</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_IOERR                      2</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad9bdf80699c85264a61a94c129baa539">  384</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NULL_HDR                   3</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="comment">/* warnings */</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a0b7206a1b71893485bb8f61913c353d2">  387</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_FILE_NEEDS_FIXING        101</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">/* read errors that may be ignored */</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a184c3dc2fb7188b599c9b9880f9dc3ca">  390</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_START                    200</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00392"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac46006c45a0080a5f9fd6d4d309fdd2a">  392</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MIN_MAX      201</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a283df2b1a2fbbba09302263a4cb55ebf">  393</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MIN_MAX      202</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad7e4eb0f405ac142be6de395a080aad9">  394</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MIN          203</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a7c5f9ffea9ebdd88a54053af0f00b397">  395</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MAX          204</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a082584e70287c4201280b5393290c3f4">  396</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_INC          205</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a86047d8655e50c0eaebac8a5a6a61254">  397</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_INC          206</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a372a46049a02a0cd6b081ca9b1e28f77">  398</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MIN          207</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a0980ab79fa4d6da9253d4f271aac9fb8">  399</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MAX          208</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="comment">/* unrecoverable errors */</span></div>
-<div class="line"><a name="l00402"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a6eff13a374f574edf95b13485bc385a4">  402</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_UNRECOVERABLE_START      300</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00404"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aedec8930294b71bdaa02689546fe6c5d">  404</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_INVALID_NUM_OREC         301</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a594e5137af9e32c35395cc92b856b59c">  405</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_NUM_SREC         302</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a14d49c2b2cd219cd4f07d423b266a4a7">  406</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_NUM_FILE         303</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a40a320a1eafc41b8aa814a54100e74e4">  407</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_GS_TYPE          304</span></div>
-<div class="line"><a name="l00408"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a81e4831b8a9e5cba08fae9071a48c42d">  408</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_GS_COUNT         305</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9dccf29d344da87a1fd84eafddb6a001">  409</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_DELTA            306</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa725b687f7f5f2b748feba1e29a566c3">  410</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_PARENT_NAME      307</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a4c2548b4ee132b2d68564dcee61733cb">  411</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_NOT_FOUND         308</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a5a9b260504684696a97314ba671eea95">  412</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NO_TOP_LEVEL_PARENT      309</span></div>
-<div class="line"><a name="l00413"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a4924e0a07d7ef191cadf3e8980cab180">  413</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_LOOP              310</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ae717bb80bcf1b0649066b72b988decb2">  414</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_OVERLAP           311</span></div>
-<div class="line"><a name="l00415"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa3498629369a6767d2f98fdcd7e04a03">  415</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_SUBFILE_OVERLAP          312</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a8f290be000231225bf0a3208915f280d">  416</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_EXTENT           313</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a35d3d8d7d7efbf69052b9f5565dd05f5">  417</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_HDRS_NOT_READ            314</span></div>
-<div class="line"><a name="l00418"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a773eaf2f80ada39169ccf395fe64dde6">  418</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_UNKNOWN_FILE_TYPE        315</span></div>
-<div class="line"><a name="l00419"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ab7419633544225e74158dc9bde0a3355">  419</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_FILE_NOT_BINARY          316</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a30cb633fecb135d7fefb7e5bce8443e8">  420</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_FILE_NOT_ASCII           317</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac789d2a381876394db109316a17a4245">  421</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NULL_PATH                318</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a21628df2035cbea0f4cd4277654a8ccb">  422</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_ORIG_DATA_NOT_KEPT       319</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a842967a496abedef5bf91c800be60da4">  423</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_DATA_NOT_READ            320</span></div>
-<div class="line"><a name="l00424"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad7f66c674e6d351790ed93e09606df96">  424</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_CANNOT_OPEN_FILE         321</span></div>
-<div class="line"><a name="l00425"></a><span class="lineno"><a class="code" href="libntv2_8h.html#af3847ea1b143dcd64c0e3437d058c3c6">  425</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_UNEXPECTED_EOF           322</span></div>
-<div class="line"><a name="l00426"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a453429f5b2a339a7632632e7469b1c78">  426</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LINE             323</span></div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;<span class="comment">/* fix header reasons (bit-mask) */</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
-<div class="line"><a name="l00430"></a><span class="lineno"><a class="code" href="libntv2_8h.html#af7cdc187861577cec417463cf1f1757f">  430</a></span>&#160;<span class="preprocessor">#define NTV2_FIX_UNPRINTABLE_CHAR         0x01</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9a1c6ba1253afdc6afea680db05c398b">  431</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_NAME_LOWERCASE           0x02</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a48d5f8d584706dc8f2e70ea59b39864f">  432</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_NAME_NOT_ALPHA           0x04</span></div>
-<div class="line"><a name="l00433"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ada9be9ad9668220e8498933f53e0fc13">  433</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_BLANK_PARENT_NAME        0x08</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aff0a52a7b997ceaf276c865255e961cf">  434</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_BLANK_SUBFILE_NAME       0x10</span></div>
-<div class="line"><a name="l00435"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a60ca887c514ac3f0f0d8857ea419206f">  435</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_NOT_FOUND        0x20</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno"><a class="code" href="libntv2_8h.html#abf7b8b5be4962874c78b79f76842eca1">  436</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_NAME_NOT_ALPHA   0x40</span></div>
-<div class="line"><a name="l00437"></a><span class="lineno"><a class="code" href="libntv2_8h.html#acde7af76658d7d98a3e51e809e183928">  437</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_PAD_NOT_ZERO     0x80</span></div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> * <a class="code" href="libntv2_8h.html#a476058083ab47808ba6823fceeaf13da">ntv2_errmsg</a>(</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;   <span class="keywordtype">int</span>  err_num,</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;   <span class="keywordtype">char</span> msg_buf[<a class="code" href="libntv2_8h.html#a9d526ee1ae0a34611157e5774ad74639">NTV2_MAX_ERR_LEN</a>]);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac60af9d0cfd0ca60b048b6e18924f9a7">  377</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_OK                         0</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="comment">/* generic errors */</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ace2ff3dd9579849bac5c8d134a60fbf8">  380</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_NO_MEMORY                  1</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="code" href="libntv2_8h.html#acd0a6df7533aaeae68776260b6b7c614">  381</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_IOERR                      2</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad9bdf80699c85264a61a94c129baa539">  382</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NULL_HDR                   3</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">/* warnings */</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a0b7206a1b71893485bb8f61913c353d2">  385</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_FILE_NEEDS_FIXING        101</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">/* read errors that may be ignored */</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a184c3dc2fb7188b599c9b9880f9dc3ca">  388</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_START                    200</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00390"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac46006c45a0080a5f9fd6d4d309fdd2a">  390</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MIN_MAX      201</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a283df2b1a2fbbba09302263a4cb55ebf">  391</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MIN_MAX      202</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad7e4eb0f405ac142be6de395a080aad9">  392</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MIN          203</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a7c5f9ffea9ebdd88a54053af0f00b397">  393</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_MAX          204</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a082584e70287c4201280b5393290c3f4">  394</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LAT_INC          205</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a86047d8655e50c0eaebac8a5a6a61254">  395</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_INC          206</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a372a46049a02a0cd6b081ca9b1e28f77">  396</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MIN          207</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a0980ab79fa4d6da9253d4f271aac9fb8">  397</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LON_MAX          208</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="comment">/* unrecoverable errors */</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a6eff13a374f574edf95b13485bc385a4">  400</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_UNRECOVERABLE_START      300</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00402"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aedec8930294b71bdaa02689546fe6c5d">  402</a></span>&#160;<span class="preprocessor">#define NTV2_ERR_INVALID_NUM_OREC         301</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a594e5137af9e32c35395cc92b856b59c">  403</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_NUM_SREC         302</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a14d49c2b2cd219cd4f07d423b266a4a7">  404</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_NUM_FILE         303</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a40a320a1eafc41b8aa814a54100e74e4">  405</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_GS_TYPE          304</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a81e4831b8a9e5cba08fae9071a48c42d">  406</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_GS_COUNT         305</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9dccf29d344da87a1fd84eafddb6a001">  407</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_DELTA            306</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa725b687f7f5f2b748feba1e29a566c3">  408</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_PARENT_NAME      307</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a4c2548b4ee132b2d68564dcee61733cb">  409</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_NOT_FOUND         308</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a5a9b260504684696a97314ba671eea95">  410</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NO_TOP_LEVEL_PARENT      309</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a4924e0a07d7ef191cadf3e8980cab180">  411</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_LOOP              310</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ae717bb80bcf1b0649066b72b988decb2">  412</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_PARENT_OVERLAP           311</span></div>
+<div class="line"><a name="l00413"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa3498629369a6767d2f98fdcd7e04a03">  413</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_SUBFILE_OVERLAP          312</span></div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a8f290be000231225bf0a3208915f280d">  414</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_EXTENT           313</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a35d3d8d7d7efbf69052b9f5565dd05f5">  415</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_HDRS_NOT_READ            314</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a773eaf2f80ada39169ccf395fe64dde6">  416</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_UNKNOWN_FILE_TYPE        315</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ab7419633544225e74158dc9bde0a3355">  417</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_FILE_NOT_BINARY          316</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a30cb633fecb135d7fefb7e5bce8443e8">  418</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_FILE_NOT_ASCII           317</span></div>
+<div class="line"><a name="l00419"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac789d2a381876394db109316a17a4245">  419</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_NULL_PATH                318</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a21628df2035cbea0f4cd4277654a8ccb">  420</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_ORIG_DATA_NOT_KEPT       319</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a842967a496abedef5bf91c800be60da4">  421</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_DATA_NOT_READ            320</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ad7f66c674e6d351790ed93e09606df96">  422</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_CANNOT_OPEN_FILE         321</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno"><a class="code" href="libntv2_8h.html#af3847ea1b143dcd64c0e3437d058c3c6">  423</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_UNEXPECTED_EOF           322</span></div>
+<div class="line"><a name="l00424"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a453429f5b2a339a7632632e7469b1c78">  424</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_ERR_INVALID_LINE             323</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="comment">/* fix header reasons (bit-mask) */</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
+<div class="line"><a name="l00428"></a><span class="lineno"><a class="code" href="libntv2_8h.html#af7cdc187861577cec417463cf1f1757f">  428</a></span>&#160;<span class="preprocessor">#define NTV2_FIX_UNPRINTABLE_CHAR         0x01</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9a1c6ba1253afdc6afea680db05c398b">  429</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_NAME_LOWERCASE           0x02</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a48d5f8d584706dc8f2e70ea59b39864f">  430</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_NAME_NOT_ALPHA           0x04</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ada9be9ad9668220e8498933f53e0fc13">  431</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_BLANK_PARENT_NAME        0x08</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aff0a52a7b997ceaf276c865255e961cf">  432</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_BLANK_SUBFILE_NAME       0x10</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a60ca887c514ac3f0f0d8857ea419206f">  433</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_NOT_FOUND        0x20</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno"><a class="code" href="libntv2_8h.html#abf7b8b5be4962874c78b79f76842eca1">  434</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_NAME_NOT_ALPHA   0x40</span></div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="code" href="libntv2_8h.html#acde7af76658d7d98a3e51e809e183928">  435</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NTV2_FIX_END_REC_PAD_NOT_ZERO     0x80</span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> * <a class="code" href="libntv2_8h.html#a476058083ab47808ba6823fceeaf13da">ntv2_errmsg</a>(</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;   <span class="keywordtype">int</span>  err_num,</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;   <span class="keywordtype">char</span> msg_buf[<a class="code" href="libntv2_8h.html#a9d526ee1ae0a34611157e5774ad74639">NTV2_MAX_ERR_LEN</a>]);</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">/* NTv2 file methods                                                      */</span></div>
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">/* NTv2 file methods                                                      */</span></div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#a500ae54f9d10eb244d3100110ae63e6f">ntv2_filetype</a>(</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *ntv2file);</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="keyword">extern</span> NTV2_HDR * <a class="code" href="libntv2_8h.html#a48c90b4f2fad52683aba86e4227c01e4">ntv2_load_file</a>(</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *  ntv2file,</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>     keep_orig,</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>     read_data,</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>     convert_data,</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;   NTV2_EXTENT * extent,</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;   <span class="keywordtype">int</span> *         prc);</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="libntv2_8h.html#ac4929a7b55225938f1bf3bb883b5ddd4">ntv2_delete</a>(</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;   NTV2_HDR *hdr);</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a02f7b35edf1f5d2d93f839cc3bcacdfd">  534</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_INP_FILE 0    </span></div>
-<div class="line"><a name="l00535"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a740545072a411568ba08009ac27828bb">  535</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_BIG      1    </span></div>
-<div class="line"><a name="l00536"></a><span class="lineno"><a class="code" href="libntv2_8h.html#abd8503df76fd44ee07b63594d1b86e7a">  536</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_LITTLE   2    </span></div>
-<div class="line"><a name="l00537"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac2678837d36a7795b92613d6a68d5562">  537</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_NATIVE   3    </span></div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;<span class="preprocessor">extern int ntv2_write_file(</span></div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;<span class="preprocessor"></span>   NTV2_HDR   *hdr,</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;   <span class="keywordtype">int</span>         byte_order);</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#ae470a547597f6950e650aaa7f2d0d133">ntv2_validate</a>(</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;   NTV2_HDR *hdr,</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;   FILE     *fp);</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;</div>
-<div class="line"><a name="l00621"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a536bae53f072571271bf2103c9be4a39">  621</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_EXT     0x01   </span></div>
-<div class="line"><a name="l00622"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3d4d860fbedb5d2acaa01db58e308a6b">  622</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_INT     0x02   </span></div>
-<div class="line"><a name="l00623"></a><span class="lineno"><a class="code" href="libntv2_8h.html#adc4942933a684cae8e3ed1072d740cea">  623</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_BOTH    0x03   </span></div>
-<div class="line"><a name="l00624"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aad9d0fd3345539df1792e24a4e04ce68">  624</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_SUMMARY 0x04   </span></div>
-<div class="line"><a name="l00625"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a395dd2f7ce4a8ce17ec4773f99e67b7f">  625</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_DATA         0x10   </span></div>
-<div class="line"><a name="l00626"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aba55dc7d624e7f1bc1d028f7b9e8bbf3">  626</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_DATA_ACC     0x30   </span></div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="preprocessor">extern void ntv2_dump(</span></div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;<span class="preprocessor"></span>   NTV2_HDR *hdr,</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;   FILE     *fp,</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;   <span class="keywordtype">int</span>       mode);</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="libntv2_8h.html#a4880f70dd884e532c2411e75f774f7dc">ntv2_list</a>(</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;   NTV2_HDR *hdr,</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;   FILE     *fp,</div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;   <span class="keywordtype">int</span>       mode,</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a> do_hdr_line);</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="comment">/* NTv2 transformation methods                                            */</span></div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
-<div class="line"><a name="l00672"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3e2c4254d2ac0f61328e18f2a2463b1b">  672</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NOTFOUND      0  </span></div>
-<div class="line"><a name="l00673"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a76534c1f127a8c03cc9f836a37e40ab0">  673</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_CONTAINED     1  </span></div>
-<div class="line"><a name="l00674"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9ec58f5064d7fc7a47cce99df7775e81">  674</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NORTH         2  </span></div>
-<div class="line"><a name="l00675"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a29a901d47ad16e87f5daabc03ebc3224">  675</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_WEST          3  </span></div>
-<div class="line"><a name="l00676"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa33162b7dd9f82aa4fe2f80de975b1c6">  676</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NORTH_WEST    4  </span></div>
-<div class="line"><a name="l00677"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a213a31f2deb8e5ff6f85cf1875847cbe">  677</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_OUTSIDE_CELL  5  </span></div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;<span class="preprocessor">extern NTV2_REC * ntv2_find_rec(</span></div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;<span class="preprocessor"></span>   NTV2_HDR *hdr,</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;   <span class="keywordtype">double</span>    lon,</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;   <span class="keywordtype">double</span>    lat,</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;   <span class="keywordtype">int</span>      *pstatus);</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#af871e2c9ccadce364d56908562ae5470">ntv2_forward</a>(</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;   NTV2_HDR  *hdr,</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;   <span class="keywordtype">double</span>     deg_factor,</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;   <span class="keywordtype">int</span>        n,</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[]);</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#a1729b22ac690f97777a70b07823fd8b4">ntv2_inverse</a>(</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;   NTV2_HDR  *hdr,</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;   <span class="keywordtype">double</span>     deg_factor,</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;   <span class="keywordtype">int</span>        n,</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[]);</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;</div>
-<div class="line"><a name="l00750"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac33d0080b2937f7c7b59cc0684e71198">  750</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_FORWARD    1        </span></div>
-<div class="line"><a name="l00751"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3bd57939bb3c51a520a6cce055002ca2">  751</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_INVERSE    0        </span></div>
-<div class="line"><a name="l00752"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aca58e6d341e32d764893248e74caebfc">  752</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_REVERSE(n) (1 - n)  </span></div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;<span class="preprocessor">extern int ntv2_transform(</span></div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="preprocessor"></span>   NTV2_HDR  *hdr,</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;   <span class="keywordtype">double</span>     deg_factor,</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;   <span class="keywordtype">int</span>        n,</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[],</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;   <span class="keywordtype">int</span>        direction);</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LIBNTV2_INCLUDED */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#a500ae54f9d10eb244d3100110ae63e6f">ntv2_filetype</a>(</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *ntv2file);</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;<span class="keyword">extern</span> NTV2_HDR * <a class="code" href="libntv2_8h.html#acac99444b7787a5272348158399d35b1">ntv2_load_file</a>(</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *  ntv2file,</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>     keep_orig,</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>     read_data,</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;   NTV2_EXTENT * extent,</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;   <span class="keywordtype">int</span> *         prc);</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="libntv2_8h.html#ac4929a7b55225938f1bf3bb883b5ddd4">ntv2_delete</a>(</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;   NTV2_HDR *hdr);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;</div>
+<div class="line"><a name="l00522"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a02f7b35edf1f5d2d93f839cc3bcacdfd">  522</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_INP_FILE 0    </span></div>
+<div class="line"><a name="l00523"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a740545072a411568ba08009ac27828bb">  523</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_BIG      1    </span></div>
+<div class="line"><a name="l00524"></a><span class="lineno"><a class="code" href="libntv2_8h.html#abd8503df76fd44ee07b63594d1b86e7a">  524</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_LITTLE   2    </span></div>
+<div class="line"><a name="l00525"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac2678837d36a7795b92613d6a68d5562">  525</a></span>&#160;<span class="preprocessor">#define NTV2_ENDIAN_NATIVE   3    </span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="preprocessor">extern int ntv2_write_file(</span></div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="preprocessor"></span>   NTV2_HDR   *hdr,</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *path,</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;   <span class="keywordtype">int</span>         byte_order);</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#ae470a547597f6950e650aaa7f2d0d133">ntv2_validate</a>(</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;   NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;   FILE     *fp);</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;</div>
+<div class="line"><a name="l00609"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a536bae53f072571271bf2103c9be4a39">  609</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_EXT     0x01   </span></div>
+<div class="line"><a name="l00610"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3d4d860fbedb5d2acaa01db58e308a6b">  610</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_INT     0x02   </span></div>
+<div class="line"><a name="l00611"></a><span class="lineno"><a class="code" href="libntv2_8h.html#adc4942933a684cae8e3ed1072d740cea">  611</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_BOTH    0x03   </span></div>
+<div class="line"><a name="l00612"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aad9d0fd3345539df1792e24a4e04ce68">  612</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_HDRS_SUMMARY 0x04   </span></div>
+<div class="line"><a name="l00613"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a395dd2f7ce4a8ce17ec4773f99e67b7f">  613</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_DATA         0x10   </span></div>
+<div class="line"><a name="l00614"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aba55dc7d624e7f1bc1d028f7b9e8bbf3">  614</a></span>&#160;<span class="preprocessor">#define NTV2_DUMP_DATA_ACC     0x30   </span></div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;<span class="preprocessor">extern void ntv2_dump(</span></div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="preprocessor"></span>   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;   FILE           *fp,</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;   <span class="keywordtype">int</span>             mode);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="libntv2_8h.html#ac591c26a640a695db355ac819f3751de">ntv2_list</a>(</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;   FILE           *fp,</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;   <span class="keywordtype">int</span>             mode,</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;   <a class="code" href="libntv2_8h.html#ab2479579ea4e6da398d5dc38fc0f0007">NTV2_BOOL</a>       do_hdr_line);</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;<span class="comment">/* NTv2 transformation methods                                            */</span></div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;</div>
+<div class="line"><a name="l00660"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3e2c4254d2ac0f61328e18f2a2463b1b">  660</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NOTFOUND      0  </span></div>
+<div class="line"><a name="l00661"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a76534c1f127a8c03cc9f836a37e40ab0">  661</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_CONTAINED     1  </span></div>
+<div class="line"><a name="l00662"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a9ec58f5064d7fc7a47cce99df7775e81">  662</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NORTH         2  </span></div>
+<div class="line"><a name="l00663"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a29a901d47ad16e87f5daabc03ebc3224">  663</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_WEST          3  </span></div>
+<div class="line"><a name="l00664"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aa33162b7dd9f82aa4fe2f80de975b1c6">  664</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_NORTH_WEST    4  </span></div>
+<div class="line"><a name="l00665"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a213a31f2deb8e5ff6f85cf1875847cbe">  665</a></span>&#160;<span class="preprocessor">#define NTV2_STATUS_OUTSIDE_CELL  5  </span></div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;<span class="preprocessor">extern const NTV2_REC * ntv2_find_rec(</span></div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;<span class="preprocessor"></span>   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;   <span class="keywordtype">double</span>         lon,</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;   <span class="keywordtype">double</span>         lat,</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;   <span class="keywordtype">int</span>           *pstatus);</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#a82816ba328a56ee4dd4cee595b9ccb04">ntv2_forward</a>(</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;   <span class="keywordtype">double</span>          deg_factor,</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;   <span class="keywordtype">int</span>             n,</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a> coord[]);</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="libntv2_8h.html#a33688ca8984125ebd57f2e86d57e0946">ntv2_inverse</a>(</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;   <span class="keywordtype">double</span>          deg_factor,</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;   <span class="keywordtype">int</span>             n,</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a>      coord[]);</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;</div>
+<div class="line"><a name="l00738"></a><span class="lineno"><a class="code" href="libntv2_8h.html#ac33d0080b2937f7c7b59cc0684e71198">  738</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_FORWARD    1        </span></div>
+<div class="line"><a name="l00739"></a><span class="lineno"><a class="code" href="libntv2_8h.html#a3bd57939bb3c51a520a6cce055002ca2">  739</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_INVERSE    0        </span></div>
+<div class="line"><a name="l00740"></a><span class="lineno"><a class="code" href="libntv2_8h.html#aca58e6d341e32d764893248e74caebfc">  740</a></span>&#160;<span class="preprocessor">#define NTV2_CVT_REVERSE(n) (1 - n)  </span></div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;<span class="preprocessor">extern int ntv2_transform(</span></div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;<span class="preprocessor"></span>   <span class="keyword">const</span> NTV2_HDR *hdr,</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;   <span class="keywordtype">double</span>          deg_factor,</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;   <span class="keywordtype">int</span>             n,</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;   <a class="code" href="libntv2_8h.html#ae76b4de123251d6b3579547f13bf29d4">NTV2_COORD</a>      coord[],</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;   <span class="keywordtype">int</span>             direction);</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;<span class="comment">/*---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LIBNTV2_INCLUDED */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 15:36:17 for NTv2 File Processing Routines by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 7 2013 13:28:26 for NTv2 File Processing Routines by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

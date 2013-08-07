@@ -361,7 +361,6 @@ struct ntv2_hdr
    /* for multi-threaded access to the file when       */
    /* transforming points and reading data on-the-fly. */
    /* This mutex does not need to be recursive.        */
-   /* This is currently not implemented.               */
 
    void *         mutex;               /*!< Ptr to OS-specific mutex  */
 
@@ -626,9 +625,9 @@ extern int ntv2_validate(
  *              This consists of a bit mask of NTV2_DUMP_* values.
  */
 extern void ntv2_dump(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode);
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode);
 
 /*---------------------------------------------------------------------*/
 /**
@@ -647,10 +646,10 @@ extern void ntv2_dump(
  * @param do_hdr_line  TRUE to output a header line.
  */
 extern void ntv2_list(
-   NTV2_HDR *hdr,
-   FILE     *fp,
-   int       mode,
-   NTV2_BOOL do_hdr_line);
+   const NTV2_HDR *hdr,
+   FILE           *fp,
+   int             mode,
+   NTV2_BOOL       do_hdr_line);
 
 /*------------------------------------------------------------------------*/
 /* NTv2 transformation methods                                            */
@@ -678,11 +677,11 @@ extern void ntv2_list(
  *
  * @return A pointer to a NTV2_REC object or NULL.
  */
-extern NTV2_REC * ntv2_find_rec(
-   NTV2_HDR *hdr,
-   double    lon,
-   double    lat,
-   int      *pstatus);
+extern const NTV2_REC * ntv2_find_rec(
+   const NTV2_HDR *hdr,
+   double         lon,
+   double         lat,
+   int           *pstatus);
 
 /*---------------------------------------------------------------------*/
 /**
@@ -704,9 +703,9 @@ extern NTV2_REC * ntv2_find_rec(
  * value of NTV2_CVT_FORWARD.
  */
 extern int ntv2_forward(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
    NTV2_COORD coord[]);
 
 /*---------------------------------------------------------------------*/
@@ -729,10 +728,10 @@ extern int ntv2_forward(
  * value of NTV2_CVT_INVERSE.
  */
 extern int ntv2_inverse(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
-   NTV2_COORD coord[]);
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
+   NTV2_COORD      coord[]);
 
 /*---------------------------------------------------------------------*/
 
@@ -759,11 +758,11 @@ extern int ntv2_inverse(
  * @return The number of points successfully transformed.
  */
 extern int ntv2_transform(
-   NTV2_HDR  *hdr,
-   double     deg_factor,
-   int        n,
-   NTV2_COORD coord[],
-   int        direction);
+   const NTV2_HDR *hdr,
+   double          deg_factor,
+   int             n,
+   NTV2_COORD      coord[],
+   int             direction);
 
 /*---------------------------------------------------------------------*/
 
