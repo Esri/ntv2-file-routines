@@ -48,5 +48,5 @@ EXEPPDEFS = -mt -L$(LIB_DIR) $(ARCHITECTURE)
 LIBDEFS   = qc
 DLLDEFS   = -mt -G -xcode=pic32 -z defs -L$(LIB_DIR) $(ARCHITECTURE)
 
-OS_LIBS   = -lpthread -lc
-OS_LIBSPP = -lpthread -lCstd -lCrun -lc
+OS_LIBS   = -lm -lpthread -lc
+OS_LIBSPP = -lm -lpthread -lCstd -lCrun -lc
