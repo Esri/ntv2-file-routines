@@ -45,14 +45,17 @@ extern "C" {
 
 #define NTV2_NULL          0             /*!< NULL pointer         */
 
-#define NTV2_COORD_LON     0             /*!< NTV2_COORD longitude */
-#define NTV2_COORD_LAT     1             /*!< NTV2_COORD latitude  */
-
 #define NTV2_MAX_PATH_LEN  256           /*!< Max pathname length  */
 #define NTV2_MAX_ERR_LEN   32            /*!< Max err msg  length  */
 
 typedef int            NTV2_BOOL;        /*!< Boolean variable     */
 typedef double         NTV2_COORD [2];   /*!< Lon/lat coordinate   */
+
+#define NTV2_COORD_LON     0             /*!< NTV2_COORD longitude */
+#define NTV2_COORD_LAT     1             /*!< NTV2_COORD latitude  */
+
+#define NTV2_COORD_LAM     0             /*!< NTV2_COORD longitude */
+#define NTV2_COORD_PHI     1             /*!< NTV2_COORD latitude  */
 
 /*---------------------------------------------------------------------*/
 /**
@@ -63,7 +66,7 @@ typedef double         NTV2_COORD [2];   /*!< Lon/lat coordinate   */
  * a grid file.
  *
  * <p>Unlike NTv2 files, this struct uses the standard notation of
- * negative-west / positive-east and values are always in degrees.
+ * negative-west / positive-east. Values are in degrees.
  *
  * <p>Since shifts are usually very small (on the order of fractions
  * of a second), it doesn't matter which datum the values are on.
@@ -86,15 +89,15 @@ struct ntv2_extent
 /*------------------------------------------------------------------------*/
 /* NTv2 file layout                                                       */
 /*                                                                        */
-/* A NTv2 file (either binary or text) is laid out as follows:            */
+/* An NTv2 file (either binary or text) is laid out as follows:           */
 /*                                                                        */
 /*    overview record                                                     */
 /*                                                                        */
 /*    sub-file record 1                                                   */
-/*       gs_count grid-shift records                                      */
+/*       gs_count (nrows * ncols) grid-shift records                      */
 /*    ...                                                                 */
 /*    sub-file record n (if present)                                      */
-/*       gs_count grid-shift records                                      */
+/*       gs_count (nrows * ncols) grid-shift records                      */
 /*                                                                        */
 /*    end record                                                          */
 /*------------------------------------------------------------------------*/
@@ -242,7 +245,7 @@ struct ntv2_file_end
 
 /*---------------------------------------------------------------------*/
 /**
- * NTv2 file grid-shift record
+ * NTv2 binary file grid-shift record
  *
  * For a particular sub-file, the grid-shift records consist of
  * <i>nrows</i> sets of <i>ncols</i> records, with the latitudes going
@@ -280,7 +283,12 @@ struct ntv2_rec
 
    NTV2_REC *     parent;              /*!< Ptr to parent or NULL     */
    NTV2_REC *     sub;                 /*!< Ptr to first sub-file     */
-   NTV2_REC *     next;                /*!< Ptr to next  sibling      */
+
+   NTV2_REC *     next;                /*!< If this record is a parent,
+                                            then this is a ptr to the
+                                            next parent. If it is a
+                                            child, then this is a ptr
+                                            to the next sibling.      */
 
    NTV2_BOOL      active;              /*!< TRUE if this rec is used  */
 
@@ -474,7 +482,7 @@ extern int ntv2_filetype(
 
 /*---------------------------------------------------------------------*/
 /**
- * Load a NTv2 file into memory.
+ * Load an NTv2 file into memory.
  *
  * @param ntv2file     The name of the NTv2 file to load.
  *
@@ -497,7 +505,7 @@ extern int ntv2_filetype(
  *                       <li>If unsuccessful, it will be set to NTV2_ERR_*.
  *                     </ul>
  *
- * @return A pointer to a NTV2_HDR object or NULL if unsuccessful.
+ * @return A pointer to an NTV2_HDR object or NULL if unsuccessful.
  */
 extern NTV2_HDR * ntv2_load_file(
    const char *  ntv2file,
@@ -508,9 +516,9 @@ extern NTV2_HDR * ntv2_load_file(
 
 /*---------------------------------------------------------------------*/
 /**
- * Delete a NTv2 object
+ * Delete an NTv2 object
  *
- * This method will also close any open stream in the object.
+ * <p>This method will also close any open stream (and mutex) in the object.
  *
  * @param hdr A pointer to a NTV2_HDR object.
  */
@@ -530,8 +538,8 @@ extern void ntv2_delete(
  * <p>Rules:
  *    <ul>
  *      <li>A binary file is always written with the zero-pads in it.
- *      <li>Sub-files are written recursively just after their parents.
  *      <li>Parents are written in the order they appeared in the original file.
+ *      <li>Sub-files are written recursively just after their parents.
  *    </ul>
  *
  * <p>One advantage of this routine is to be able to write out a file
@@ -568,14 +576,14 @@ extern int ntv2_write_file(
 
 /*---------------------------------------------------------------------*/
 /**
- * Validate all headers in a NTv2 file.
+ * Validate all headers in an NTv2 file.
  *
- * Some unrecoverable errors are found when reading the headers,
+ * <p>Some unrecoverable errors are found when reading the headers,
  * but this method does an in-depth analysis of all headers and
  * their parent-child relationships.
  *
- * <p>Note that all validation messages are in English, and no
- * mechanism was setup to localize them.
+ * <p>Note that all validation messages are in English, and there is
+ * presently no mechanism to localize them.
  *
  * <p>Rules:
  *
@@ -598,7 +606,8 @@ extern int ntv2_write_file(
  *            be numerous errors in the file.
  *
  * @return If successful,   NTV2_ERR_OK (0).
- *         If unsuccessful, NTV2_ERR_*.
+ *         If unsuccessful, NTV2_ERR_*. This will be the error code
+ *         for the last error encountered.
  */
 extern int ntv2_validate(
    NTV2_HDR *hdr,
@@ -614,7 +623,7 @@ extern int ntv2_validate(
 #define NTV2_DUMP_DATA_ACC     0x30   /*!< Dump data for shifts & accuracy */
 
 /**
- * Dump the contents of all headers in a NTv2 file.
+ * Dump the contents of all headers in an NTv2 file.
  *
  * @param hdr   A pointer to a NTV2_HDR object.
  *
@@ -631,9 +640,9 @@ extern void ntv2_dump(
 
 /*---------------------------------------------------------------------*/
 /**
- * List the contents of all headers in a NTv2 file.
+ * List the contents of all headers in an NTv2 file.
  *
- * This method dumps all headers in a concise list format.
+ * <p>This method dumps all headers in a concise list format.
  *
  * @param hdr          A pointer to a NTV2_HDR object.
  *
@@ -671,8 +680,8 @@ extern void ntv2_list(
  * Normally, users have no need to call this routine.
  *
  * @param hdr         A pointer to a NTV2_HDR object.
- * @param lon         Longitude of point (in degrees)
- * @param lat         Latitude  of point (in degrees)
+ * @param lon         Longitude of point (in degrees).
+ * @param lat         Latitude  of point (in degrees).
  * @param pstatus     Returned status (NTV2_STATUS_*).
  *
  * @return A pointer to a NTV2_REC object or NULL.
@@ -699,8 +708,12 @@ extern const NTV2_REC * ntv2_find_rec(
  *
  * @return The number of points successfully transformed.
  *
- * <p>Note that this routine just calls ntv2_transform() with a direction
- * value of NTV2_CVT_FORWARD.
+ * <p>Note that the return value is the number of points successfully
+ * transformed, and points that can't be transformed (usually because
+ * they are outside of the grid) are left unchanged.  However, there
+ * is no indication of which points were changed and which were not.
+ * If this information is needed, then this routine should be called
+ * with one point at a time. The overhead for doing this is minimal.
  */
 extern int ntv2_forward(
    const NTV2_HDR *hdr,
@@ -724,8 +737,12 @@ extern int ntv2_forward(
  *
  * @return The number of points successfully transformed.
  *
- * <p>Note that this routine just calls ntv2_transform() with a direction
- * value of NTV2_CVT_INVERSE.
+ * <p>Note that the return value is the number of points successfully
+ * transformed, and points that can't be transformed (usually because
+ * they are outside of the grid) are left unchanged.  However, there
+ * is no indication of which points were changed and which were not.
+ * If this information is needed, then this routine should be called
+ * with one point at a time. The overhead for doing this is minimal.
  */
 extern int ntv2_inverse(
    const NTV2_HDR *hdr,
@@ -756,6 +773,16 @@ extern int ntv2_inverse(
  *                    (NTV2_CVT_FORWARD or NTV2_CVT_INVERSE).
  *
  * @return The number of points successfully transformed.
+ *
+ * <p>Note that the return value is the number of points successfully
+ * transformed, and points that can't be transformed (usually because
+ * they are outside of the grid) are left unchanged.  However, there
+ * is no indication of which points were changed and which were not.
+ * If this information is needed, then this routine should be called
+ * with one point at a time. The overhead for doing this is minimal.
+ *
+ * <p>Note also that internally this routine simply calls ntv2_forward()
+ * or ntv2_inverse().
  */
 extern int ntv2_transform(
    const NTV2_HDR *hdr,

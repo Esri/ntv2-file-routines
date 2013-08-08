@@ -1513,21 +1513,21 @@ static int ntv2_fix_ptrs(
 
          if ( rec->active )
          {
-           NTV2_REC * parent = rec->parent;
-           int count = 0;
+            NTV2_REC * parent = rec->parent;
+            int count = 0;
 
-           for (; parent != NTV2_NULL; parent = parent->parent)
-           {
-              if ( ++count > max_chain )
-                 return NTV2_ERR_PARENT_LOOP;
-           }
+            for (; parent != NTV2_NULL; parent = parent->parent)
+            {
+               if ( ++count > max_chain )
+                  return NTV2_ERR_PARENT_LOOP;
+            }
          }
       }
    }
 
    /* -------- adjust all sub-file pointers
 
-      Now, we create the chains of all sub-file pointers.
+      Here we create the chains of all sub-file pointers.
    */
 
    for (i = 0; i < hdr->num_recs; i++)
@@ -2370,7 +2370,7 @@ static int ntv2_process_extent(
             rec->wskip = (wskip * sizeof(NTV2_FILE_GS));
             rec->eskip = (eskip * sizeof(NTV2_FILE_GS));
 
-            /* adjust subfile record if we cached it */
+            /* adjust the subfile record if we cached it */
             if ( hdr->subfiles != NTV2_NULL )
             {
                NTV2_FILE_SF * sf = &hdr->subfiles[i];
@@ -2876,7 +2876,7 @@ static NTV2_HDR * ntv2_load_file_asc(
       return NTV2_NULL;
    }
 
-   hdr->keep_orig      = keep_orig;
+   hdr->keep_orig = keep_orig;
 
    /* -------- read in the overview record */
 
