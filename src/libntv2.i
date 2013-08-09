@@ -121,7 +121,7 @@ typedef struct ntv2_mutex_t NTV2_MUTEX_T;
 struct ntv2_mutex_t
 {
    NTV2_CRITSECT  cs;
-   int              count;
+   int            count;
 };
 
 static void * ntv2_mutex_create()

@@ -71,7 +71,7 @@ static void display_usage(int level)
       printf("  -B         Write    big-endian binary file\n");
       printf("  -L         Write little-endian binary file\n");
       printf("  -N         Write native-endian binary file\n");
-      printf("               (default is same as input file)\n");
+      printf("             (default is same as input  file)\n");
       printf("\n");
 
       printf("  -o file    Specify output file\n");

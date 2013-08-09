@@ -1089,7 +1089,7 @@ int ntv2_validate(
 {
    NTV2_REC *rec;
    NTV2_REC *sub;
-   NTV2_REC *n;
+   NTV2_REC *next;
    int i;
    int rc = NTV2_ERR_OK;
 
@@ -1172,7 +1172,7 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "GS_COUNT <= 0");
-            fprintf(fp, "    num         = %d\n",    rec->num);
+            fprintf(fp, "    num         = %d\n", rec->num);
          }
          rc = NTV2_ERR_INVALID_GS_COUNT;
       }
@@ -1244,15 +1244,15 @@ int ntv2_validate(
 
    for (rec = hdr->first_parent; rec != NTV2_NULL; rec = rec->next)
    {
-      for (n = rec->next; n != NTV2_NULL; n = n->next)
+      for (next = rec->next; next != NTV2_NULL; next = next->next)
       {
-         if ( ntv2_overlap(rec, n) )
+         if ( ntv2_overlap(rec, next) )
          {
             if ( fp != NTV2_NULL )
             {
                NTV2_SHOW_PATH();
                fprintf(fp, "  record %d: record %3d: %s\n",
-                  rec->rec_num, n->rec_num,
+                  rec->rec_num, next->rec_num,
                   "parent overlap");
             }
             rc = NTV2_ERR_PARENT_OVERLAP;
@@ -1271,15 +1271,15 @@ int ntv2_validate(
       {
          rc = ntv2_validate_subfile(hdr, rec, sub, fp, rc);
 
-         for (n = sub->next; n != NTV2_NULL; n = n->next)
+         for (next = sub->next; next != NTV2_NULL; next = next->next)
          {
-            if ( ntv2_overlap(sub, n) )
+            if ( ntv2_overlap(sub, next) )
             {
                if ( fp != NTV2_NULL )
                {
                   NTV2_SHOW_PATH();
                   fprintf(fp, "  record %d: record %3d: %s\n",
-                     sub->rec_num, n->rec_num,
+                     sub->rec_num, next->rec_num,
                      "subfile overlap");
                }
                rc = NTV2_ERR_SUBFILE_OVERLAP;
@@ -1431,13 +1431,13 @@ static int ntv2_fix_ptrs(
 
             for (j = 0; j < hdr->num_recs; j++)
             {
-               NTV2_REC * n = hdr->recs + j;
+               NTV2_REC * next = hdr->recs + j;
 
-               if ( i != j && n->active )
+               if ( i != j && next->active )
                {
-                  if ( ntv2_strcmp_i(rec->parent_name, n->record_name) == 0 )
+                  if ( ntv2_strcmp_i(rec->parent_name, next->record_name) == 0 )
                   {
-                     p = n;
+                     p = next;
                      break;
                   }
                }
@@ -1551,18 +1551,18 @@ static int ntv2_fix_ptrs(
 
          for (j = 0; j < hdr->num_recs; j++)
          {
-            NTV2_REC * n = hdr->recs + j;
+            NTV2_REC * next = hdr->recs + j;
 
-            if ( i != j && n->active )
+            if ( i != j && next->active )
             {
-               if ( n->parent == rec )
+               if ( next->parent == rec )
                {
                   if ( rec->sub == NTV2_NULL )
-                     rec->sub = n;
+                     rec->sub = next;
 
                   if ( sub != NTV2_NULL )
-                     sub->next = n;
-                  sub = n;
+                     sub->next = next;
+                  sub = next;
                }
             }
          }

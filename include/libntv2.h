@@ -713,7 +713,7 @@ extern const NTV2_REC * ntv2_find_rec(
  * they are outside of the grid) are left unchanged.  However, there
  * is no indication of which points were changed and which were not.
  * If this information is needed, then this routine should be called
- * with one point at a time. The overhead for doing this is minimal.
+ * with one point at a time. The overhead for doing that is minimal.
  */
 extern int ntv2_forward(
    const NTV2_HDR *hdr,
@@ -742,7 +742,7 @@ extern int ntv2_forward(
  * they are outside of the grid) are left unchanged.  However, there
  * is no indication of which points were changed and which were not.
  * If this information is needed, then this routine should be called
- * with one point at a time. The overhead for doing this is minimal.
+ * with one point at a time. The overhead for doing that is minimal.
  */
 extern int ntv2_inverse(
    const NTV2_HDR *hdr,
@@ -779,7 +779,7 @@ extern int ntv2_inverse(
  * they are outside of the grid) are left unchanged.  However, there
  * is no indication of which points were changed and which were not.
  * If this information is needed, then this routine should be called
- * with one point at a time. The overhead for doing this is minimal.
+ * with one point at a time. The overhead for doing that is minimal.
  *
  * <p>Note also that internally this routine simply calls ntv2_forward()
  * or ntv2_inverse().
