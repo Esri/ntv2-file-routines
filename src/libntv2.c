@@ -30,7 +30,7 @@
 #include <locale.h>
 
 #include "libntv2.h"
-#include "libntv2.i"
+#include "libntv2_utils.i"
 
 /* ------------------------------------------------------------------------- */
 /* internal defines and macros                                               */
