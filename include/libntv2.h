@@ -34,7 +34,7 @@ extern "C" {
 #define NTV2_VERSION_MAJOR     1
 #define NTV2_VERSION_MINOR     0
 #define NTV2_VERSION_RELEASE   0
-#define NTV2_VERSION_STR       "1.0.0"
+#define NTV2_VERSION_STR       "1.0.1"
 
 /*------------------------------------------------------------------------*/
 /* external definitions & structs                                         */
@@ -45,7 +45,7 @@ extern "C" {
 
 #define NTV2_NULL          0             /*!< NULL pointer         */
 
-#define NTV2_MAX_PATH_LEN  256           /*!< Max pathname length  */
+#define NTV2_MAX_PATH_LEN  1024          /*!< Max pathname length  */
 #define NTV2_MAX_ERR_LEN   32            /*!< Max err msg  length  */
 
 typedef int            NTV2_BOOL;        /*!< Boolean variable     */
