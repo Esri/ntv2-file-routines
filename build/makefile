@@ -39,7 +39,6 @@ MAKE_INCLUDES := \
 VS_PROJECTS := \
   $(wildcard vs_projects/*.vcproj)            \
   $(wildcard vs_projects/*.vcxproj)           \
-  $(wildcard vs_projects/*.vcxproj.filters)   \
   $(NULL)
 
 DIRSRC  := $(MAKE_INCLUDES) $(VS_PROJECTS)
