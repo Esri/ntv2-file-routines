@@ -30,7 +30,7 @@
 #include <locale.h>
 
 #include "libntv2.h"
-#include "libntv2.i"
+#include "libntv2_utils.i"
 
 /* ------------------------------------------------------------------------- */
 /* internal defines and macros                                               */
@@ -488,39 +488,153 @@ static double ntv2_atod(char *s)
 }
 
 /*------------------------------------------------------------------------
- * format a floating point number to a string
+ * convert a double to a string
  *
- * Numbers are displayed left-adjusted with a max of 8 decimal digits,
- * with extra trailing zeros removed.
- *
- * Also, any localized decimal point character is converted to a '.'.
+ * The string will always have a '.' as the decimal point character.
  */
-static char * ntv2_dtoa(char *buf, double dbl)
+static char * ntv2_dtoa(char *buf, double dnum)
 {
-   char dec_pnt = localeconv()->decimal_point[0];
-   char *s;
-   char *d;
-   char *p = NULL;
+   char decimal_point_char = localeconv()->decimal_point[0];
+   char tmp[64];
+   char *pc;
+   int  i, is16, iexp, ilen, idec;
+   int  nsigdigits = 16;
 
-   sprintf(buf, "%.8f", dbl);
-   s = strchr(buf, dec_pnt);
-   if ( s != NULL )
+   if ( buf == NULL )
+      return NULL;
+
+   if ( nsigdigits <= 0 )
+      nsigdigits = 1;
+   else if ( nsigdigits > 16 )
+      nsigdigits = 16;
+
+   is16 = nsigdigits == 16 ? 1 : 0;
+   ilen = nsigdigits + 8 - is16;
+   idec = nsigdigits - is16;
+   sprintf(tmp, "%*.*e", ilen, idec, dnum);
+
+   pc = &tmp[ilen - 3];
+   while ( *pc != '+' && *pc != '-' )
    {
-      *s = '.';
+     pc--;
+   }
+   iexp = atoi(pc);
 
-      s += 2;
-      for (d = s; *d; d++)
+   if ( is16 )
+   {
+      pc = pc - 4;
+
+      if ( iexp < 12 )
       {
-         if ( *d != '0' )
-            p = d;
+         /* Check the last couple of sig digits */
+
+         if ( !strncmp(pc, "00", 2) )
+         {
+            /* Truncate */
+            /* Drop the number of significant digits */
+            nsigdigits--;
+         }
+         else if ( !strncmp(pc, "99", 2) )
+         {
+            /* Round up */
+            /* Drop the number of significant digits */
+            nsigdigits--;
+         }
       }
-      if ( p == NULL )
-         *s = 0;
-      else
-         p[1] = 0;
    }
 
+   if ( iexp < 0 )
+   {
+      idec = nsigdigits - 1 + (iexp * -1);
+      ilen = idec + 3;
+
+      if ( ilen > 63 )
+      {
+         idec = nsigdigits;
+         ilen = idec + 8;
+         sprintf(tmp, "%*.*g", ilen, idec, dnum);
+      }
+      else
+      {
+         sprintf(tmp, "%*.*f", ilen, idec, dnum);
+         for (i = (int)strlen(tmp) - 1; i >= 0; i--)
+         {
+            if ( tmp[i] != '0' )
+            {
+               break;
+            }
+            tmp[i] = 0;
+         }
+         if ( tmp[i] == decimal_point_char )
+         {
+            tmp[i+1] = '0';
+            tmp[i+2] = 0;
+         }
+
+         if ( strlen(tmp) > 24 || iexp < -9 )
+         {
+            idec = nsigdigits;
+            ilen = idec + 8;
+            sprintf(tmp, "%*.*g", ilen, idec, dnum);
+         }
+      }
+      for (pc = tmp; isspace(*pc); pc++) ;
+      strcpy(buf, pc);
+   }
+   else
+   {
+      idec = nsigdigits - 1 - iexp;
+      if ( idec > -1 )
+      {
+         ilen = nsigdigits + 2;
+         sprintf(buf, "%*.*f", ilen, idec, dnum);
+
+         if ( !strchr(buf, decimal_point_char) )
+         {
+            char buf2[8];
+            sprintf(buf2, "%c0", decimal_point_char);
+            strcat(buf, buf2);
+         }
+
+         for (i = (int)strlen(buf) - 1; i >= 0; i--)
+         {
+            if ( buf[i] != '0' )
+            {
+               break;
+            }
+            buf[i] = 0;
+         }
+         if ( buf[i] == decimal_point_char )
+         {
+            buf[i+1] = '0';
+            buf[i+2] = 0;
+         }
+      }
+      else
+      {
+         idec = nsigdigits;
+         ilen = idec + 8;
+         sprintf(buf, "%*.*g", ilen, idec, dnum);
+      }
+   }
+
+   ntv2_strip_buf(buf);
+
    return buf;
+}
+
+/*------------------------------------------------------------------------
+ * convert a double to an int
+ */
+static int ntv2_dtoi(double dbl)
+{
+   if ( dbl == 0.0 )
+      return 0;
+
+   if ( dbl < 0.0 )
+      return (int)(dbl - 0.5);
+   else
+      return (int)(dbl + 0.5);
 }
 
 /*------------------------------------------------------------------------
@@ -886,12 +1000,13 @@ static int ntv2_validate_subfile(
    FILE     *fp,
    int       rc)
 {
+   char   buf[32];
    double t;
    int n;
 
    /* ------ is parent's lat_inc a multiple of subfile's lat_inc ? */
 
-   n = (int)((par->lat_inc / sub->lat_inc) + 0.5);
+   n = ntv2_dtoi(par->lat_inc / sub->lat_inc);
    t = sub->lat_inc * n;
    if ( !NTV2_EQ(t, par->lat_inc) )
    {
@@ -901,10 +1016,10 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d : parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LAT_INC not a multiple of parent LAT_INC");
-         fprintf(fp, "    sub lat_inc = %.17g\n", sub->lat_inc);
-         fprintf(fp, "    par lat_inc = %.17g\n", par->lat_inc);
-         fprintf(fp, "    num cells   = %d\n",    n);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    sub lat_inc = %s\n", ntv2_dtoa(buf, sub->lat_inc));
+         fprintf(fp, "    par lat_inc = %s\n", ntv2_dtoa(buf, par->lat_inc));
+         fprintf(fp, "    num cells   = %d\n", n);
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LAT_INC;
    }
@@ -919,15 +1034,15 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LAT_MIN < parent LAT_MIN");
-         fprintf(fp, "    sub lat_min = %.17g\n", sub->lat_min);
-         fprintf(fp, "    par lat_min = %.17g\n", par->lat_min);
+         fprintf(fp, "    sub lat_min = %s\n", ntv2_dtoa(buf, sub->lat_min));
+         fprintf(fp, "    par lat_min = %s\n", ntv2_dtoa(buf, par->lat_min));
       }
       rc = NTV2_ERR_INVALID_LAT_MIN;
    }
 
    /* ------ does subfile's lat_min line up with parent's grid line ? */
 
-   n = (int)((sub->lat_min - par->lat_min) / par->lat_inc + 0.5);
+   n = ntv2_dtoi((sub->lat_min - par->lat_min) / par->lat_inc);
    t = par->lat_min + (n * par->lat_inc);
    if ( !NTV2_EQ(t, sub->lat_min) )
    {
@@ -937,11 +1052,11 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LAT_MIN not on parent grid line");
-         fprintf(fp, "    par LAT_MIN = %.17g\n", par->lat_min);
-         fprintf(fp, "    par LAT_INC = %.17g\n", par->lat_inc);
-         fprintf(fp, "    num cells   = %d\n",    n);
-         fprintf(fp, "    sub LAT_MIN = %.17g\n", sub->lat_min);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    par LAT_MIN = %s\n", ntv2_dtoa(buf, par->lat_min));
+         fprintf(fp, "    par LAT_INC = %s\n", ntv2_dtoa(buf, par->lat_inc));
+         fprintf(fp, "    num cells   = %d\n", n);
+         fprintf(fp, "    sub LAT_MIN = %s\n", ntv2_dtoa(buf, sub->lat_min));
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LAT_MIN;
    }
@@ -956,15 +1071,15 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LAT_MAX > parent LAT_MAX");
-         fprintf(fp, "    par lat_max = %.17g\n", par->lat_max);
-         fprintf(fp, "    sub lat_max = %.17g\n", sub->lat_max);
+         fprintf(fp, "    par lat_max = %s\n", ntv2_dtoa(buf, par->lat_max));
+         fprintf(fp, "    sub lat_max = %s\n", ntv2_dtoa(buf, sub->lat_max));
       }
       rc = NTV2_ERR_INVALID_LAT_MAX;
    }
 
    /* ------ does subfile's lat_max line up with parent's grid line ? */
 
-   n = (int)((par->lat_max - sub->lat_max) / par->lat_inc + 0.5);
+   n = ntv2_dtoi((par->lat_max - sub->lat_max) / par->lat_inc);
    t = par->lat_max - (n * par->lat_inc);
    if ( !NTV2_EQ(t, sub->lat_max) )
    {
@@ -974,18 +1089,18 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LAT_MAX not on parent grid line");
-         fprintf(fp, "    par LAT_MAX = %.17g\n", par->lat_max);
-         fprintf(fp, "    par LAT_INC = %.17g\n", par->lat_inc);
-         fprintf(fp, "    num cells   = %d\n",    n);
-         fprintf(fp, "    sub LAT_MAX = %.17g\n", sub->lat_max);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    par LAT_MAX = %s\n", ntv2_dtoa(buf, par->lat_max));
+         fprintf(fp, "    par LAT_INC = %s\n", ntv2_dtoa(buf, par->lat_inc));
+         fprintf(fp, "    num cells   = %d\n", n);
+         fprintf(fp, "    sub LAT_MAX = %s\n", ntv2_dtoa(buf, sub->lat_max));
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LAT_MAX;
    }
 
    /* ------ is parent's lon_inc a multiple of subfile's lon_inc ? */
 
-   n = (int)((par->lon_inc / sub->lon_inc) + 0.5);
+   n = ntv2_dtoi(par->lon_inc / sub->lon_inc);
    t = sub->lon_inc * n;
    if ( !NTV2_EQ(t, par->lon_inc) )
    {
@@ -995,10 +1110,10 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LON_INC not a multiple of parent LON_INC");
-         fprintf(fp, "    sub lon_inc = %.17g\n", sub->lon_inc);
+         fprintf(fp, "    sub lon_inc = %s\n", ntv2_dtoa(buf, sub->lon_inc));
          fprintf(fp, "    num cells   = %d\n", n);
-         fprintf(fp, "    par lon_inc = %.17g\n", par->lon_inc);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    par lon_inc = %s\n", ntv2_dtoa(buf, par->lon_inc));
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LON_INC;
    }
@@ -1013,15 +1128,15 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LON_MIN < parent LON_MIN");
-         fprintf(fp, "    par lon_min = %.17g\n", par->lon_min);
-         fprintf(fp, "    sub lon_min = %.17g\n", sub->lon_min);
+         fprintf(fp, "    par lon_min = %s\n", ntv2_dtoa(buf, par->lon_min));
+         fprintf(fp, "    sub lon_min = %s\n", ntv2_dtoa(buf, sub->lon_min));
       }
       rc = NTV2_ERR_INVALID_LON_MIN;
    }
 
    /* ------ does subfile's lon_min line up with parent's grid line ? */
 
-   n = (int)((sub->lon_min - par->lon_min) / par->lon_inc + 0.5);
+   n = ntv2_dtoi((sub->lon_min - par->lon_min) / par->lon_inc);
    t = par->lon_min + (n * par->lon_inc);
    if ( !NTV2_EQ(t, sub->lon_min) )
    {
@@ -1031,11 +1146,11 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LON_MIN not on parent grid line");
-         fprintf(fp, "    par LON_MIN = %.17g\n", par->lon_min);
-         fprintf(fp, "    par LON_INC = %.17g\n", par->lon_inc);
-         fprintf(fp, "    num cells   = %d\n",    n);
-         fprintf(fp, "    sub LON_MIN = %.17g\n", sub->lon_min);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    par LON_MIN = %s\n", ntv2_dtoa(buf, par->lon_min));
+         fprintf(fp, "    par LON_INC = %s\n", ntv2_dtoa(buf, par->lon_inc));
+         fprintf(fp, "    num cells   = %d\n", n);
+         fprintf(fp, "    sub LON_MIN = %s\n", ntv2_dtoa(buf, sub->lon_min));
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LON_MIN;
    }
@@ -1050,15 +1165,15 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LON_MAX > parent LON_MAX");
-         fprintf(fp, "    par lon_max = %.17g\n", par->lon_max);
-         fprintf(fp, "    sub lon_max = %.17g\n", sub->lon_max);
+         fprintf(fp, "    par lon_max = %s\n", ntv2_dtoa(buf, par->lon_max));
+         fprintf(fp, "    sub lon_max = %s\n", ntv2_dtoa(buf, sub->lon_max));
       }
       rc = NTV2_ERR_INVALID_LON_MAX;
    }
 
    /* ------ does subfile's lon_max line up with parent's grid line ? */
 
-   n = (int)((par->lon_max - sub->lon_max) / par->lon_inc + 0.5);
+   n = ntv2_dtoi((par->lon_max - sub->lon_max) / par->lon_inc);
    t = par->lon_max - (n * par->lon_inc);
    if ( !NTV2_EQ(t, sub->lon_max) )
    {
@@ -1068,11 +1183,11 @@ static int ntv2_validate_subfile(
          fprintf(fp, "  record %3d: parent %3d: %s\n",
             sub->rec_num, par->rec_num,
             "subfile LON_MAX not on parent grid line");
-         fprintf(fp, "    par LON_MAX = %.17g\n", par->lon_max);
-         fprintf(fp, "    par LON_INC = %.17g\n", par->lon_inc);
-         fprintf(fp, "    num cells   = %d\n",    n);
-         fprintf(fp, "    sub LON_MAX = %.17g\n", sub->lon_max);
-         fprintf(fp, "    should be   = %.17g\n", t);
+         fprintf(fp, "    par LON_MAX = %s\n", ntv2_dtoa(buf, par->lon_max));
+         fprintf(fp, "    par LON_INC = %s\n", ntv2_dtoa(buf, par->lon_inc));
+         fprintf(fp, "    num cells   = %d\n", n);
+         fprintf(fp, "    sub LON_MAX = %s\n", ntv2_dtoa(buf, sub->lon_max));
+         fprintf(fp, "    should be   = %s\n", ntv2_dtoa(buf, t));
       }
       rc = NTV2_ERR_INVALID_LON_MAX;
    }
@@ -1090,8 +1205,9 @@ int ntv2_validate(
    NTV2_REC *rec;
    NTV2_REC *sub;
    NTV2_REC *next;
-   int i;
-   int rc = NTV2_ERR_OK;
+   char buf[32];
+   int  i;
+   int  rc = NTV2_ERR_OK;
 
    rc = ntv2_validate_ov(hdr, fp, rc);
 
@@ -1114,7 +1230,7 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LAT_INC <= 0");
-            fprintf(fp, "    LAT_INC     = %.17g\n", rec->lat_inc);
+            fprintf(fp, "    LAT_INC     = %s\n", ntv2_dtoa(buf, rec->lat_inc));
          }
          rc = NTV2_ERR_INVALID_LAT_INC;
       }
@@ -1128,8 +1244,8 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LAT_MIN >= LAT_MAX");
-            fprintf(fp, "    LAT_MIN     = %.17g\n", rec->lat_min);
-            fprintf(fp, "    LAT_MAX     = %.17g\n", rec->lat_max);
+            fprintf(fp, "    LAT_MIN     = %s\n", ntv2_dtoa(buf, rec->lat_min));
+            fprintf(fp, "    LAT_MAX     = %s\n", ntv2_dtoa(buf, rec->lat_max));
          }
          rc = NTV2_ERR_INVALID_LAT_MIN_MAX;
       }
@@ -1143,7 +1259,7 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LON_INC <= 0");
-            fprintf(fp, "    LAT_INC     = %.17g\n", rec->lon_inc);
+            fprintf(fp, "    LAT_INC     = %s\n", ntv2_dtoa(buf, rec->lon_inc));
          }
          rc = NTV2_ERR_INVALID_LON_INC;
       }
@@ -1157,8 +1273,8 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LON_MIN >= LON_MAX");
-            fprintf(fp, "    LON_MIN     = %.17g\n", rec->lon_min);
-            fprintf(fp, "    LON_MAX     = %.17g\n", rec->lon_max);
+            fprintf(fp, "    LON_MIN     = %s\n", ntv2_dtoa(buf, rec->lon_min));
+            fprintf(fp, "    LON_MAX     = %s\n", ntv2_dtoa(buf, rec->lon_max));
          }
          rc = NTV2_ERR_INVALID_LON_MIN_MAX;
       }
@@ -1187,12 +1303,12 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LAT range not a multiple of LAT_INC");
-            fprintf(fp, "    LON_MIN     = %.17g\n", rec->lat_min);
-            fprintf(fp, "    LON_MAX     = %.17g\n", rec->lat_max);
-            fprintf(fp, "    range       = %.17g\n", rec->lat_max-rec->lat_min);
-            fprintf(fp, "    LON_INC     = %.17g\n", rec->lat_inc);
+            fprintf(fp, "    LON_MIN     = %s\n", ntv2_dtoa(buf, rec->lat_min));
+            fprintf(fp, "    LON_MAX     = %s\n", ntv2_dtoa(buf, rec->lat_max));
+            fprintf(fp, "    range       = %s\n", ntv2_dtoa(buf, rec->lat_max-rec->lat_min));
+            fprintf(fp, "    LON_INC     = %s\n", ntv2_dtoa(buf, rec->lat_inc));
             fprintf(fp, "    n           = %d\n",    rec->nrows-1);
-            fprintf(fp, "    t           = %.17g\n", temp);
+            fprintf(fp, "    t           = %s\n", ntv2_dtoa(buf, temp));
          }
          rc = NTV2_ERR_INVALID_LAT_INC;
       }
@@ -1207,12 +1323,12 @@ int ntv2_validate(
             NTV2_SHOW_PATH();
             fprintf(fp, "  record %3d: %s\n", rec->rec_num,
                "LON range not a multiple of LON_INC");
-            fprintf(fp, "    LON_MIN     = %.17g\n", rec->lon_min);
-            fprintf(fp, "    LON_MAX     = %.17g\n", rec->lon_max);
-            fprintf(fp, "    range       = %.17g\n", rec->lon_max-rec->lon_min);
-            fprintf(fp, "    LON_INC     = %.17g\n", rec->lon_inc);
+            fprintf(fp, "    LON_MIN     = %s\n", ntv2_dtoa(buf, rec->lon_min));
+            fprintf(fp, "    LON_MAX     = %s\n", ntv2_dtoa(buf, rec->lon_max));
+            fprintf(fp, "    range       = %s\n", ntv2_dtoa(buf, rec->lon_max-rec->lon_min));
+            fprintf(fp, "    LON_INC     = %s\n", ntv2_dtoa(buf, rec->lon_inc));
             fprintf(fp, "    n           = %d\n",    rec->ncols-1);
-            fprintf(fp, "    t           = %.17g\n", temp);
+            fprintf(fp, "    t           = %s\n", ntv2_dtoa(buf, temp));
          }
          rc = NTV2_ERR_INVALID_LON_INC;
       }
@@ -1495,7 +1611,7 @@ static int ntv2_fix_ptrs(
       parents and have created a chain of them to follow.
 
       Now we want to validate that all sub-files ultimately
-      point to a top-level parent.  ie, there are no parent chain
+      point to a top-level parent.  i.e., there are no parent chain
       loops (eg, subfile A's parent is B and B's parent is A).
 
       Our logic here is to get the longest possible parent chain
@@ -1845,12 +1961,15 @@ static int ntv2_read_ov_bin(
 
    /* -------- check for I/O error */
 
-   if ( ferror(hdr->fp) || feof(hdr->fp) )
+   if ( ferror(hdr->fp) || feof(hdr->fp) || nr != 1 )
    {
       return NTV2_ERR_IOERR;
    }
 
    /* -------- get the conversion
+
+      Note that this conversion factor applies to both the header values
+      and the shift values, but in different ways.
 
       So far, the only data type we've encountered in any published
       NTv2 file is "SECONDS".
@@ -1963,7 +2082,7 @@ static int ntv2_read_sf_bin(
 
    /* -------- check for I/O error */
 
-   if ( ferror(hdr->fp) || feof(hdr->fp) )
+   if ( ferror(hdr->fp) || feof(hdr->fp) || nr != 1 )
    {
       return NTV2_ERR_IOERR;
    }
@@ -2001,7 +2120,8 @@ static int ntv2_read_er_bin(
  * file ever spans the dateline (+/-180 degrees).
  *
  * However, we still have to remember that the grid-shift records
- * are written (backwards) east-to-west.
+ * are written (backwards) east-to-west, and the longitude shift values
+ * are positive-west/negative-east.
  */
 static int ntv2_sf_to_rec(
    NTV2_HDR     *hdr,
@@ -2051,10 +2171,8 @@ static int ntv2_sf_to_rec(
 
    rec->num        =  sf->i_gs_count;
 
-   rec->nrows      =  (int)
-                      ((rec->lat_max - rec->lat_min) / rec->lat_inc + 0.5) + 1;
-   rec->ncols      =  (int)
-                      ((rec->lon_max - rec->lon_min) / rec->lon_inc + 0.5) + 1;
+   rec->nrows      =  ntv2_dtoi((rec->lat_max - rec->lat_min) / rec->lat_inc) + 1;
+   rec->ncols      =  ntv2_dtoi((rec->lon_max - rec->lon_min) / rec->lon_inc) + 1;
 
    /* collect the min/max of all the sub-files */
 
@@ -2292,8 +2410,8 @@ static int ntv2_process_extent(
          {
             lat_inc = rec->parent->lat_inc;
             lon_inc = rec->parent->lon_inc;
-            lat_mul = (int)((lat_inc / rec->lat_inc) + 0.5);
-            lon_mul = (int)((lon_inc / rec->lon_inc) + 0.5);
+            lat_mul = ntv2_dtoi(lat_inc / rec->lat_inc);
+            lon_mul = ntv2_dtoi(lon_inc / rec->lon_inc);
          }
 
          if ( NTV2_GT(wlon, rec->lon_min) )
@@ -4422,12 +4540,14 @@ int ntv2_inverse(
 
 #if DEBUG_INVERSE
          {
-            fprintf(stderr, "iteration %2d: value: %.17g %.17g\n",
+            char buf1[32], buf2[32];
+            fprintf(stderr, "iteration %2d: value: %s %s\n",
                num_iterations+1,
-               lon_next - lon_delta,
-               lat_next - lat_delta);
-            fprintf(stderr, "              delta: %.17g %.17g\n",
-               lon_delta, lat_delta);
+               ntv2_dtoa(buf1, lon_next - lon_delta),
+               ntv2_dtoa(buf1, lat_next - lat_delta));
+            fprintf(stderr, "              delta: %s %s\n",
+               ntv2_dtoa(buf1, lon_delta),
+               ntv2_dtoa(buf2, lat_delta));
          }
 #endif
 
@@ -4439,8 +4559,12 @@ int ntv2_inverse(
       }
 
 #if DEBUG_INVERSE
-         fprintf(stderr, "final         value: %.17g %.17g\n",
-            lon_next, lat_next);
+      {
+         char buf1[32], buf2[32];
+         fprintf(stderr, "final         value: %s %s\n",
+            ntv2_dtoa(buf1, lon_next),
+            ntv2_dtoa(buf2, lat_next));
+      }
 #endif
 
       if ( num_iterations > 0 )
