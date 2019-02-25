@@ -16,7 +16,8 @@ This package contains a C library, some sample programs to create, dump,
 and use NTv2 files, and some sample NTv2 files to test with.
 
 For further information, see the Canadian document
-[NTv2 (National Transformation Version 2)](
+[NTv2 (National Transformation Version 2)](https://web.archive.org/web/20140127204822/http://www.mgs.gov.on.ca/stdprodconsume/groups/content/@mgs/@iandit/documents/resourcelist/stel02_047447.pdf) URL archived 2014-01-27. 
+[Original URL](
 http://www.mgs.gov.on.ca/stdprodconsume/groups/content/@mgs/@iandit/documents/resourcelist/stel02_047447.pdf).
 The relevant section is "Appendix B: NTv2 Developers Guide".
 
