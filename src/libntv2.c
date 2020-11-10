@@ -1574,8 +1574,8 @@ static int ntv2_fix_ptrs(
                   strcpy(rec->parent_name, NTV2_NO_PARENT_NAME);
                   if ( hdr->subfiles != NTV2_NULL )
                   {
-                     strncpy(hdr->subfiles[rec->rec_num].s_parent,
-                             NTV2_NO_PARENT_NAME, NTV2_NAME_LEN);
+                     memcpy(hdr->subfiles[rec->rec_num].s_parent,
+                            NTV2_NO_PARENT_NAME, NTV2_NAME_LEN);
                   }
                   hdr->fixed |= NTV2_FIX_BLANK_PARENT_NAME;
                   i--;
@@ -3254,7 +3254,7 @@ static void ntv2_write_end_bin(
 {
    NTV2_FILE_END end_rec;
 
-   strncpy(end_rec.n_end,  NTV2_END_NAME,  NTV2_NAME_LEN);
+   memcpy(end_rec.n_end,   NTV2_END_NAME,  NTV2_NAME_LEN);
    memcpy (end_rec.filler, NTV2_ALL_ZEROS, NTV2_NAME_LEN);
    fwrite(&end_rec, sizeof(end_rec), 1, fp);
 }
