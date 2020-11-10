@@ -18,4 +18,4 @@
 # Generic Windoze setup
 # ------------------------------------------------------------------------
 
-include $(TOP_DIR)/build/make_includes/make_platform_windows_vs2008.i
+include $(TOP_DIR)/build/make_includes/make_platform_windows_vs2019.i
